@@ -3,48 +3,25 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>iDENTify - AI Dental Revolution</title>
+    <title>iDENTify - AI Dental Health Scanner</title>
     <link rel="stylesheet" href="styles.css">
-    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 </head>
 <body>
-    <!-- Particle System Background -->
-    <div id="particles-js"></div>
-    
-    <!-- Voice Command Indicator -->
-    <div class="voice-indicator" id="voiceIndicator">
-        <i class="fas fa-microphone"></i>
-        <span>Say "Hey iDENTify" to activate</span>
-    </div>
-
     <!-- Navigation -->
     <nav class="navbar">
         <div class="nav-container">
             <div class="nav-logo">
-                <div class="hologram-logo">
-                    <div class="logo-core"></div>
-                    <div class="logo-ring ring1"></div>
-                    <div class="logo-ring ring2"></div>
-                    <div class="logo-ring ring3"></div>
-                </div>
+                <img src="logo.png" alt="iDENTify Logo" class="logo-image">
                 <h2>iDENTify</h2>
             </div>
             <ul class="nav-menu">
-                <li><a href="#hero" data-section="hero">Home</a></li>
-                <li><a href="#problem" data-section="problem">Problem</a></li>
-                <li><a href="#solution" data-section="solution">Solution</a></li>
-                <li><a href="#demo" data-section="demo">Demo</a></li>
-                <li><a href="#contact" data-section="contact">Contact</a></li>
+                <li><a href="#hero">Home</a></li>
+                <li><a href="#problem">Problem</a></li>
+                <li><a href="#solution">Solution</a></li>
+                <li><a href="#demo">Demo</a></li>
+                <li><a href="#contact">Contact</a></li>
             </ul>
-            <div class="nav-actions">
-                <button class="voice-btn" id="voiceBtn">
-                    <i class="fas fa-microphone"></i>
-                </button>
-                <button class="theme-toggle" id="themeToggle">
-                    <i class="fas fa-moon"></i>
-                </button>
-            </div>
         </div>
     </nav>
 
@@ -52,79 +29,80 @@
     <section id="hero" class="hero">
         <div class="hero-content">
             <div class="hero-text">
-                <h1 class="glitch" data-text="iDENTify">iDENTify</h1>
-                <h2>AI-Powered Dental Revolution</h2>
-                <p>Transform your iPhone into a dental health scanner</p>
+                <h1>iDENTify</h1>
+                <h2>AI-Powered Dental Health Scanner</h2>
+                <p>Transform your iPhone into a professional dental scanner using Invisalign Smile Lens technology. Detect cavities, gingivitis, and monitor oral health in real-time.</p>
+                
                 <div class="hero-stats">
                     <div class="stat">
-                        <span class="stat-number" data-target="99">0</span>%
-                        <span class="stat-label">Accuracy</span>
+                        <span class="stat-number" data-target="95">0</span><span class="stat-unit">%</span>
+                        <span class="stat-label">Dentist Agreement</span>
                     </div>
                     <div class="stat">
-                        <span class="stat-number" data-target="2">0</span>s
+                        <span class="stat-number" data-target="5">0</span><span class="stat-unit">s</span>
                         <span class="stat-label">Scan Time</span>
                     </div>
                     <div class="stat">
-                        <span class="stat-number" data-target="150">0</span>B
-                        <span class="stat-label">Market Size</span>
+                        <span class="stat-number" data-target="3.5">0</span><span class="stat-unit">B</span>
+                        <span class="stat-label">People  Affected</span>
                     </div>
                 </div>
+
                 <div class="hero-buttons">
                     <button class="btn btn-primary" onclick="launchDemo()">
-                        <span>Launch Demo</span>
+                        <span>Try the Demo</span>
                         <i class="fas fa-rocket"></i>
                     </button>
-                    <button class="btn btn-secondary" onclick="downloadPitch()">
-                        <span>Pitch Deck</span>
+                    <a href="resources/iDENTify_Pitch.pdf" class="btn btn-secondary" target="_blank">
+                        <span>View Pitch Deck</span>
                         <i class="fas fa-download"></i>
-                    </button>
+                    </a>
                 </div>
             </div>
+            
             <div class="hero-visual">
-                <div class="phone-hologram">
-                    <div class="phone-frame">
-                        <div class="phone-screen">
-                            <div class="scan-animation">
-                                <div class="scan-line"></div>
-                                <div class="scan-particles"></div>
+                <div class="phone-simple">
+                    <div class="phone-screen">
+                        <div class="scan-interface">
+                            <div class="scan-icon">
+                                <i class="fas fa-tooth"></i>
                             </div>
-                            <div class="ai-brain">
-                                <div class="neural-network"></div>
-                            </div>
+                            <div class="scan-text">Ready to Scan</div>
+                            <button class="scan-button" onclick="simulateScan()">
+                                <i class="fas fa-camera"></i> Scan
+                            </button>
                         </div>
                     </div>
-                    <div class="hologram-effects">
-                        <div class="holo-ring"></div>
-                        <div class="holo-ring"></div>
-                        <div class="holo-ring"></div>
-                    </div>
                 </div>
             </div>
-        </div>
-        <div class="scroll-indicator">
-            <div class="scroll-arrow"></div>
         </div>
     </section>
 
     <!-- Problem Section -->
     <section id="problem" class="section">
         <div class="container">
-            <h2 class="section-title">The Crisis</h2>
+            <h2 class="section-title">The Dental Health Crisis</h2>
             <div class="problem-grid">
-                <div class="problem-card" data-aos="fade-up">
-                    <div class="card-icon">🦷</div>
+                <div class="problem-card">
+                    <div class="card-icon">
+                        <i class="fas fa-tooth"></i>
+                    </div>
                     <h3>60% Skip Checkups</h3>
-                    <p>People avoid dentists until it's too late</p>
+                    <p>Most people avoid routine dentist visits, leading to undetected problems.</p>
                 </div>
-                <div class="problem-card" data-aos="fade-up" data-aos-delay="200">
-                    <div class="card-icon">💰</div>
-                    <h3>3x Emergency Cost</h3>
-                    <p>Preventable issues become expensive crises</p>
+                <div class="problem-card">
+                    <div class="card-icon">
+                        <i class="fas fa-dollar-sign"></i>
+                    </div>
+                    <h3>5x Higher Treatment Cost</h3>
+                    <p>Small preventable issues turn into expensive emergencies when ignored.</p>
                 </div>
-                <div class="problem-card" data-aos="fade-up" data-aos-delay="400">
-                    <div class="card-icon">⏰</div>
-                    <h3>40% Wasted Time</h3>
-                    <p>Dentists spend time on preventable problems</p>
+                <div class="problem-card">
+                    <div class="card-icon">
+                        <i class="fas fa-clock"></i>
+                    </div>
+                    <h3>50% of Dentist Appointments</h3>
+                    <p>Are spent on minor, preventable conditions instead of complex care.</p>
                 </div>
             </div>
         </div>
@@ -133,51 +111,22 @@
     <!-- Solution Section -->
     <section id="solution" class="section">
         <div class="container">
-            <h2 class="section-title">The Revolution</h2>
-            <div class="solution-showcase">
-                <div class="solution-left">
-                    <div class="feature-highlight">
-                        <div class="feature-icon">📱</div>
-                        <h3>iPhone + Invisalign Lens</h3>
-                        <p>Your phone becomes a dental scanner</p>
-                    </div>
-                    <div class="feature-highlight">
-                        <div class="feature-icon">🧠</div>
-                        <h3>AI Disease Detection</h3>
-                        <p>Instantly spot cavities & gingivitis</p>
-                    </div>
-                    <div class="feature-highlight">
-                        <div class="feature-icon">📊</div>
-                        <h3>Health Tracking</h3>
-                        <p>Monitor trends & predict issues</p>
-                    </div>
+            <h2 class="section-title">Our Solution</h2>
+            <div class="solution-content">
+                <div class="solution-text">
+                    <h3>AI-Powered Dental Monitoring</h3>
+                    <p>iDENTify combines your iPhone with Invisalign Smile Lens technology to create a powerful dental health scanner that professionals trust.</p>
+                    <ul class="solution-features">
+                        <li>Instant disease detection (cavities, gingivitis)</li>
+                        <li>Continuous health trend monitoring and prediction</li>
+                        <li>Professional-grade accuracy validated by dentists</li>
+                        <li>Seamless integration with existing dental workflows</li>
+                    </ul>
                 </div>
-                <div class="solution-center">
-                    <div class="central-device">
-                        <div class="device-glow"></div>
-                        <div class="device-core">
-                            <i class="fas fa-tooth"></i>
-                        </div>
-                        <div class="energy-waves">
-                            <div class="wave"></div>
-                            <div class="wave"></div>
-                            <div class="wave"></div>
-                        </div>
-                    </div>
-                </div>
-                <div class="solution-right">
-                    <div class="benefit-list">
-                        <div class="benefit">
-                            <span class="benefit-number">01</span>
-                            <span class="benefit-text">Prevent Emergencies</span>
-                        </div>
-                        <div class="benefit">
-                            <span class="benefit-number">02</span>
-                            <span class="benefit-text">Save Money</span>
-                        </div>
-                        <div class="benefit">
-                            <span class="benefit-number">03</span>
-                            <span class="benefit-text">Better Health</span>
+                <div class="solution-visual">
+                    <div class="device-demo">
+                        <div class="device-icon">
+                            <i class="fas fa-mobile-alt"></i>
                         </div>
                     </div>
                 </div>
@@ -185,49 +134,53 @@
         </div>
     </section>
 
-    <!-- Interactive Demo Section -->
+    <!-- Demo Section -->
     <section id="demo" class="section">
         <div class="container">
-            <h2 class="section-title">Try It Now</h2>
+            <h2 class="section-title">Experience the Future</h2>
             <div class="demo-container">
-                <div class="demo-phone">
-                    <div class="phone-body">
-                        <div class="camera-lens"></div>
-                        <div class="phone-display">
-                            <div class="demo-interface">
-                                <div class="demo-header">
-                                    <h3>iDENTify Scanner</h3>
-                                    <div class="status-indicator">
-                                        <span class="status-dot"></span>
-                                        Ready to Scan
+                <div class="demo-text">
+                    <h3>See iDENTify in Action</h3>
+                    <p>Experience how our AI transforms your iPhone into a professional dental scanner. Get instant insights into your oral health with our interactive demo.</p>
+                </div>
+                
+                <div class="demo-interface">
+                    <div class="demo-phone">
+                        <div class="phone-frame">
+                            <div class="phone-screen">
+                                <div class="scanner-interface">
+                                    <div class="scanner-header">
+                                        <h4>iDENTify Scanner</h4>
+                                        <div class="status">Ready</div>
                                     </div>
-                                </div>
-                                <div class="demo-viewfinder">
-                                    <div class="viewfinder-frame">
+                                    
+                                    <div class="viewfinder">
                                         <div class="corner-guide top-left"></div>
                                         <div class="corner-guide top-right"></div>
                                         <div class="corner-guide bottom-left"></div>
                                         <div class="corner-guide bottom-right"></div>
+                                        <div class="scan-target">
+                                            <i class="fas fa-tooth"></i>
+                                        </div>
                                     </div>
-                                    <div class="scan-target">
-                                        <i class="fas fa-tooth"></i>
+                                    
+                                    <div class="scanner-controls">
+                                        <button class="scan-btn" onclick="startScan()">
+                                            <i class="fas fa-camera"></i> Start Scan
+                                        </button>
                                     </div>
-                                </div>
-                                <div class="demo-controls">
-                                    <button class="scan-btn" onclick="simulateScan()">
-                                        <i class="fas fa-camera"></i>
-                                        Scan Now
-                                    </button>
                                 </div>
                             </div>
                         </div>
                     </div>
-                </div>
-                <div class="demo-results">
-                    <div class="result-card" id="resultCard">
-                        <h3>Scan Results</h3>
-                        <div class="result-content">
-                            <p>Click "Scan Now" to see AI analysis</p>
+                    
+                    <div class="demo-results" id="demoResults">
+                        <div class="results-header">
+                            <h4>Scan Results</h4>
+                            <p>Click "Start Scan" to begin analysis</p>
+                        </div>
+                        <div class="results-content" id="resultsContent">
+                            <!-- Results will be populated here -->
                         </div>
                     </div>
                 </div>
@@ -238,85 +191,83 @@
     <!-- Contact Section -->
     <section id="contact" class="section">
         <div class="container">
-            <h2 class="section-title">Get Connected</h2>
-            <div class="contact-grid">
+            <h2 class="section-title">Join the Revolution</h2>
+            <div class="contact-content">
                 <div class="contact-info">
-                    <div class="contact-item">
-                        <div class="contact-icon">📧</div>
-                        <div>
-                            <h4>Email</h4>
-                            <p>hello@identify.ai</p>
+                    <h3>Ready to Transform Dental Health?</h3>
+                    <p>We're seeking strategic partners, investors, and early adopters who want to be part of the future of preventive dental care. Let's discuss how iDENTify can revolutionize your dental practice or investment portfolio.</p>
+                    
+                    <div class="contact-details">
+                        <div class="contact-detail">
+                            <i class="fas fa-envelope"></i>
+                            <span>hello@identify.ai</span>
                         </div>
-                    </div>
-                    <div class="contact-item">
-                        <div class="contact-icon">📱</div>
-                        <div>
-                            <h4>Phone</h4>
-                            <p>+1 (555) 123-4567</p>
+                        <div class="contact-detail">
+                            <i class="fas fa-map-marker-alt"></i>
+                            <span>Silicon Valley, CA</span>
                         </div>
-                    </div>
-                    <div class="contact-item">
-                        <div class="contact-icon">🌍</div>
-                        <div>
-                            <h4>Location</h4>
-                            <p>Silicon Valley, CA</p>
+                        <div class="contact-detail">
+                            <i class="fas fa-calendar"></i>
+                            <span>Available for meetings</span>
                         </div>
                     </div>
                 </div>
+                
                 <div class="contact-form">
                     <form id="contactForm">
-                        <div class="form-row">
-                            <input type="text" placeholder="Name" required>
-                            <input type="email" placeholder="Email" required>
+                        <div class="form-group">
+                            <label for="name">Name</label>
+                            <input type="text" id="name" name="name" required>
                         </div>
-                        <textarea placeholder="Message" rows="4" required></textarea>
-                        <button type="submit" class="submit-btn">
-                            <span>Send Message</span>
-                            <i class="fas fa-paper-plane"></i>
-                        </button>
+                        <div class="form-group">
+                            <label for="email">Email</label>
+                            <input type="email" id="email" name="email" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="company">Company</label>
+                            <input type="text" id="company" name="company">
+                        </div>
+                        <div class="form-group">
+                            <label for="interest">Interest</label>
+                            <select id="interest" name="interest" required>
+                                <option value="">Select Interest</option>
+                                <option value="investment">Investment Opportunity</option>
+                                <option value="partnership">Strategic Partnership</option>
+                                <option value="pilot">Pilot Program</option>
+                                <option value="demo">Product Demo</option>
+                                <option value="other">Other</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="message">Message</label>
+                            <textarea id="message" name="message" rows="4" required></textarea>
+                        </div>
+                        <button type="submit" class="submit-btn">Send Message</button>
                     </form>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- AI Chat Bot -->
-    <div class="ai-chat" id="aiChat">
-        <div class="chat-header">
-            <h4>iDENTify AI</h4>
-            <button class="chat-close" onclick="toggleChat()">
-                <i class="fas fa-times"></i>
-            </button>
-        </div>
-        <div class="chat-messages" id="chatMessages">
-            <div class="message ai">
-                <div class="message-avatar">🤖</div>
-                <div class="message-content">
-                    Hi! I'm your iDENTify AI assistant. Ask me anything about dental health or our technology!
-                </div>
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-content">
+            <h3>iDENTify</h3>
+            <p>Transforming dental health through AI innovation</p>
+            <div class="footer-links">
+                <a href="#hero">Home</a>
+                <a href="#problem">Problem</a>
+                <a href="#solution">Solution</a>
+                <a href="#demo">Demo</a>
+                <a href="#contact">Contact</a>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 iDENTify. All rights reserved.</p>
             </div>
         </div>
-        <div class="chat-input">
-            <input type="text" placeholder="Ask me anything..." id="chatInput">
-            <button onclick="sendMessage()">
-                <i class="fas fa-paper-plane"></i>
-            </button>
-        </div>
-    </div>
-
-    <!-- Floating Action Button -->
-    <div class="fab" onclick="toggleChat()">
-        <i class="fas fa-comments"></i>
-    </div>
-
-    <!-- Version Switcher -->
-    <div class="version-switcher">
-        <button class="version-btn active" onclick="switchVersion('crazy')">🚀 Crazy</button>
-        <button class="version-btn" onclick="switchVersion('classic')">🎨 Classic</button>
-    </div>
+    </footer>
 
     <!-- Scripts -->
-    <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
     <script src="script.js"></script>
 </body>
 </html> 
