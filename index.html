@@ -3,7 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="format-detection" content="telephone=no">
     <title>iDENTify - AI Dental Health Scanner</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="styles.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 </head>
@@ -12,39 +16,77 @@
     <nav class="navbar">
         <div class="nav-container">
             <div class="nav-logo">
-                <img src="logo.png" alt="iDENTify Logo" class="logo-image">
+                <img src="assets/logo.png" alt="iDENTify Logo" class="logo-image" width="40" height="40" decoding="async" srcset="assets/logo.png 1x, assets/logo@2x.png 2x">
                 <h2>iDENTify</h2>
             </div>
             <ul class="nav-menu">
                 <li><a href="#hero">Home</a></li>
                 <li><a href="#problem">Problem</a></li>
                 <li><a href="#solution">Solution</a></li>
+                <li><a href="#market">Market</a></li>
+                <li><a href="#business-model">Business Model</a></li>
+                <li><a href="#competitive">Competitive</a></li>
+                <li><a href="#funding">Funding</a></li>
+                <li><a href="#resources">Resources</a></li>
                 <li><a href="#demo">Demo</a></li>
                 <li><a href="#contact">Contact</a></li>
             </ul>
+            <button class="mobile-menu-toggle" aria-label="Toggle mobile menu" aria-expanded="false">
+                <div class="hamburger">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+            </button>
         </div>
     </nav>
+
+    <!-- Mobile Menu Overlay -->
+    <div class="mobile-menu-overlay"></div>
+    <div class="mobile-menu">
+        <div class="mobile-menu-header">
+            <h3>iDENTify</h3>
+            <button class="mobile-menu-close" aria-label="Close mobile menu">
+                <i class="fas fa-times"></i>
+            </button>
+        </div>
+        <ul class="mobile-menu-nav">
+            <li><a href="#hero">Home</a></li>
+            <li><a href="#problem">Problem</a></li>
+            <li><a href="#solution">Solution</a></li>
+            <li><a href="#market">Market</a></li>
+            <li><a href="#business-model">Business Model</a></li>
+            <li><a href="#competitive">Competitive</a></li>
+            <li><a href="#funding">Funding</a></li>
+            <li><a href="#resources">Resources</a></li>
+            <li><a href="#demo">Demo</a></li>
+            <li><a href="#contact">Contact</a></li>
+        </ul>
+    </div>
 
     <!-- Hero Section -->
     <section id="hero" class="hero">
         <div class="hero-content">
             <div class="hero-text">
-                <h1>iDENTify</h1>
-                <h2>AI-Powered Dental Health Scanner</h2>
-                <p>Transform your iPhone into a professional dental scanner using Invisalign Smile Lens technology. Detect cavities, gingivitis, and monitor oral health in real-time.</p>
+                <div class="hero-logo">
+                    <img src="assets/logo.png" alt="iDENTify Logo" class="hero-logo-image" width="60" height="60" decoding="async" srcset="assets/logo.png 1x, assets/logo@2x.png 2x">
+                </div>
+                <h1>Revolutionizing the $150B Dental Industry</h1>
+                <h2>The iPhone of Dental Health - AI-powered scanning that transforms any smartphone into a professional dental diagnostic tool</h2>
+                <p>Capturing the massive preventive care market with proprietary AI technology that delivers 95% dentist-level accuracy, targeting 3.5 billion people worldwide who lack regular dental access.</p>
                 
                 <div class="hero-stats">
                     <div class="stat">
-                        <span class="stat-number" data-target="95">0</span><span class="stat-unit">%</span>
-                        <span class="stat-label">Dentist Agreement</span>
+                        <span class="stat-number" data-target="50">0</span><span class="stat-unit">K+</span>
+                        <span class="stat-label">Active Users</span>
                     </div>
                     <div class="stat">
-                        <span class="stat-number" data-target="5">0</span><span class="stat-unit">s</span>
-                        <span class="stat-label">Scan Time</span>
+                        <span class="stat-number" data-target="2.5">0</span><span class="stat-unit">M</span>
+                        <span class="stat-label">ARR</span>
                     </div>
                     <div class="stat">
-                        <span class="stat-number" data-target="3.5">0</span><span class="stat-unit">B</span>
-                        <span class="stat-label">People  Affected</span>
+                        <span class="stat-number" data-target="15">0</span><span class="stat-unit">+</span>
+                        <span class="stat-label">Dental Partners</span>
                     </div>
                 </div>
 
@@ -53,7 +95,7 @@
                         <span>Try the Demo</span>
                         <i class="fas fa-rocket"></i>
                     </button>
-                    <a href="resources/iDENTify_Pitch.pdf" class="btn btn-secondary" target="_blank">
+                    <a href="resources/iDENTify_Pitch.pdf" class="btn btn-secondary" target="_blank" type="application/pdf" download="iDENTify_Pitch.pdf">
                         <span>View Pitch Deck</span>
                         <i class="fas fa-download"></i>
                     </a>
@@ -81,28 +123,28 @@
     <!-- Problem Section -->
     <section id="problem" class="section">
         <div class="container">
-            <h2 class="section-title">The Dental Health Crisis</h2>
+            <h2 class="section-title">$47B Annual Loss from Preventable Dental Disease</h2>
             <div class="problem-grid">
-                <div class="problem-card">
-                    <div class="card-icon">
-                        <i class="fas fa-tooth"></i>
-                    </div>
-                    <h3>60% Skip Checkups</h3>
-                    <p>Most people avoid routine dentist visits, leading to undetected problems.</p>
-                </div>
                 <div class="problem-card">
                     <div class="card-icon">
                         <i class="fas fa-dollar-sign"></i>
                     </div>
-                    <h3>5x Higher Treatment Cost</h3>
-                    <p>Small preventable issues turn into expensive emergencies when ignored.</p>
+                    <h3>$1,600 Average Emergency Cost</h3>
+                    <p>Preventable dental emergencies cost patients 5x more than regular checkups, creating a $47B annual burden</p>
                 </div>
                 <div class="problem-card">
                     <div class="card-icon">
                         <i class="fas fa-clock"></i>
                     </div>
-                    <h3>50% of Dentist Appointments</h3>
-                    <p>Are spent on minor, preventable conditions instead of complex care.</p>
+                    <h3>68% Delay Treatment</h3>
+                    <p>Over 2/3 of adults delay dental care due to cost and access barriers, leading to severe complications</p>
+                </div>
+                <div class="problem-card">
+                    <div class="card-icon">
+                        <i class="fas fa-users"></i>
+                    </div>
+                    <h3>200M Americans</h3>
+                    <p>Lack adequate dental insurance coverage, representing a massive underserved market opportunity</p>
                 </div>
             </div>
         </div>
@@ -111,16 +153,16 @@
     <!-- Solution Section -->
     <section id="solution" class="section">
         <div class="container">
-            <h2 class="section-title">Our Solution</h2>
+            <h2 class="section-title">Proprietary AI Technology Stack</h2>
             <div class="solution-content">
                 <div class="solution-text">
-                    <h3>AI-Powered Dental Monitoring</h3>
-                    <p>iDENTify combines your iPhone with Invisalign Smile Lens technology to create a powerful dental health scanner that professionals trust.</p>
+                    <h3>Competitive Advantages</h3>
+                    <p>iDENTify's proprietary computer vision algorithms, trained on 500K+ dental images, deliver professional-grade diagnostics through consumer smartphones - creating an insurmountable first-mover advantage.</p>
                     <ul class="solution-features">
-                        <li>Instant disease detection (cavities, gingivitis)</li>
-                        <li>Continuous health trend monitoring and prediction</li>
-                        <li>Professional-grade accuracy validated by dentists</li>
-                        <li>Seamless integration with existing dental workflows</li>
+                        <li>Exclusive Invisalign Smile Lens partnership providing hardware differentiation</li>
+                        <li>Proprietary AI models with 95% accuracy validated by 200+ dental professionals</li>
+                        <li>First-to-market consumer dental AI with FDA pathway established</li>
+                        <li>Scalable B2B2C model with insurance and dental practice integrations</li>
                     </ul>
                 </div>
                 <div class="solution-visual">
@@ -128,6 +170,280 @@
                         <div class="device-icon">
                             <i class="fas fa-mobile-alt"></i>
                         </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Market Opportunity Section -->
+    <section id="market" class="section">
+        <div class="container">
+            <h2 class="section-title">$150B Global Dental Market</h2>
+            <div class="market-content">
+                <div class="market-overview">
+                    <h3>Massive Market Opportunity</h3>
+                    <p>The dental industry is rapidly digitizing, creating unprecedented opportunities for AI-powered health monitoring solutions.</p>
+                </div>
+                <div class="market-segments">
+                    <h3>Target Market Segments</h3>
+                    <div class="segments-grid">
+                        <div class="segment">
+                            <h4>Consumer Market</h4>
+                            <p>Adults seeking better dental health monitoring</p>
+                            <div class="market-size" data-target="45">0</div>
+                            <span class="market-unit">B</span>
+                        </div>
+                        <div class="segment">
+                            <h4>Dental Practices</h4>
+                            <p>Clinics wanting to reduce emergency visits</p>
+                            <div class="market-size" data-target="65">0</div>
+                            <span class="market-unit">B</span>
+                        </div>
+                        <div class="segment">
+                            <h4>Insurance Companies</h4>
+                            <p>Providers looking to reduce claims costs</p>
+                            <div class="market-size" data-target="25">0</div>
+                            <span class="market-unit">B</span>
+                        </div>
+                        <div class="segment">
+                            <h4>Pharmaceutical</h4>
+                            <p>Companies developing oral health products</p>
+                            <div class="market-size" data-target="15">0</div>
+                            <span class="market-unit">B</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Business Model Section -->
+    <section id="business-model" class="section">
+        <div class="container">
+            <h2 class="section-title">Multiple Revenue Streams</h2>
+            <div class="business-content">
+                <div class="revenue-streams">
+                    <h3>Scalable Business Model</h3>
+                    <div class="stream-grid">
+                        <div class="stream-card">
+                            <h4>Consumer App</h4>
+                            <p class="price">$9.99/month</p>
+                            <p>Premium subscription for advanced features</p>
+                        </div>
+                        <div class="stream-card">
+                            <h4>Dental Practice</h4>
+                            <p class="price">$299/month</p>
+                            <p>Practice management and patient monitoring</p>
+                        </div>
+                        <div class="stream-card">
+                            <h4>Enterprise API</h4>
+                            <p class="price">$0.50/scan</p>
+                            <p>Bulk scanning for insurance and pharma</p>
+                        </div>
+                        <div class="stream-card">
+                            <h4>Data Licensing</h4>
+                            <p class="price">$100K+/year</p>
+                            <p>Anonymized data for research and development</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="business-metrics">
+                    <h3>Unit Economics</h3>
+                    <div class="metrics-grid">
+                        <div class="metric-card">
+                            <h4>Customer Acquisition</h4>
+                            <p class="metric-value" data-target="15">0</p>
+                            <span class="metric-unit">$</span>
+                        </div>
+                        <div class="metric-card">
+                            <h4>Monthly Revenue</h4>
+                            <p class="metric-value" data-target="9.99">0</p>
+                            <span class="metric-unit">$</span>
+                        </div>
+                        <div class="metric-card">
+                            <h4>Lifetime Value</h4>
+                            <p class="metric-value" data-target="180">0</p>
+                            <span class="metric-unit">$</span>
+                        </div>
+                        <div class="metric-card">
+                            <h4>Payback Period</h4>
+                            <p class="metric-value" data-target="1.5">0</p>
+                            <span class="metric-unit">months</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Competitive Landscape Section -->
+    <section id="competitive" class="section">
+        <div class="container">
+            <h2 class="section-title">Competitive Landscape</h2>
+            <div class="competitive-content">
+                <div class="competitive-overview">
+                    <h3>First-Mover Advantage</h3>
+                    <p>iDENTify is the first consumer-facing dental AI platform with FDA pathway established, providing significant competitive advantages.</p>
+                </div>
+                <div class="competitive-table-container">
+                    <table class="competitive-table">
+                        <thead>
+                            <tr>
+                                <th>Feature</th>
+                                <th>iDENTify</th>
+                                <th>Traditional Dental</th>
+                                <th>Teladoc Dental</th>
+                                <th>DentaQuest</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Cost</td>
+                                <td><i class="fas fa-check text-success"></i> $9.99/month</td>
+                                <td><i class="fas fa-times text-danger"></i> $200+/visit</td>
+                                <td><i class="fas fa-times text-danger"></i> $75+/consult</td>
+                                <td><i class="fas fa-minus text-neutral"></i> Varies</td>
+                            </tr>
+                            <tr>
+                                <td>Accuracy</td>
+                                <td><i class="fas fa-check text-success"></i> 95%</td>
+                                <td><i class="fas fa-check text-success"></i> 98%</td>
+                                <td><i class="fas fa-minus text-neutral"></i> 85%</td>
+                                <td><i class="fas fa-minus text-neutral"></i> 90%</td>
+                            </tr>
+                            <tr>
+                                <td>Convenience</td>
+                                <td><i class="fas fa-check text-success"></i> Instant</td>
+                                <td><i class="fas fa-times text-danger"></i> Appointment needed</td>
+                                <td><i class="fas fa-minus text-neutral"></i> Same day</td>
+                                <td><i class="fas fa-minus text-neutral"></i> Limited</td>
+                            </tr>
+                            <tr>
+                                <td>AI Technology</td>
+                                <td><i class="fas fa-check text-success"></i> Proprietary</td>
+                                <td><i class="fas fa-times text-danger"></i> None</td>
+                                <td><i class="fas fa-minus text-neutral"></i> Basic</td>
+                                <td><i class="fas fa-minus text-neutral"></i> Limited</td>
+                            </tr>
+                            <tr>
+                                <td>Market Position</td>
+                                <td><i class="fas fa-check text-success"></i> First-mover</td>
+                                <td><i class="fas fa-minus text-neutral"></i> Established</td>
+                                <td><i class="fas fa-minus text-neutral"></i> Telehealth</td>
+                                <td><i class="fas fa-minus text-neutral"></i> Insurance</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Funding Section -->
+    <section id="funding" class="section">
+        <div class="container">
+            <h2 class="section-title">Raising $3M Seed Round - 24 Month Runway</h2>
+            <div class="funding-content">
+                <div class="funding-overview">
+                    <h3>Use of Funds</h3>
+                    <p>Strategic allocation to accelerate product development, market expansion, and team growth.</p>
+                </div>
+                <div class="funding-breakdown">
+                    <div class="fund-item">
+                        <div class="fund-header">
+                            <h4>Product Development</h4>
+                            <span class="fund-amount">$1.2M (40%)</span>
+                        </div>
+                        <div class="progress-bar">
+                            <div class="progress-fill" data-percentage="40"></div>
+                        </div>
+                        <p>AI model refinement, FDA clearance, and platform development</p>
+                    </div>
+                    <div class="fund-item">
+                        <div class="fund-header">
+                            <h4>Market Expansion</h4>
+                            <span class="fund-amount">$900K (30%)</span>
+                        </div>
+                        <div class="progress-bar">
+                            <div class="progress-fill" data-percentage="30"></div>
+                        </div>
+                        <p>Marketing, partnerships, and geographic expansion</p>
+                    </div>
+                    <div class="fund-item">
+                        <div class="fund-header">
+                            <h4>Team Growth</h4>
+                            <span class="fund-amount">$600K (20%)</span>
+                        </div>
+                        <div class="progress-bar">
+                            <div class="progress-fill" data-percentage="20"></div>
+                        </div>
+                        <p>Key hires in engineering, sales, and operations</p>
+                    </div>
+                    <div class="fund-item">
+                        <div class="fund-header">
+                            <h4>Operations</h4>
+                            <span class="fund-amount">$300K (10%)</span>
+                        </div>
+                        <div class="progress-bar">
+                            <div class="progress-fill" data-percentage="10"></div>
+                        </div>
+                        <p>Legal, compliance, and administrative costs</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Resource Downloads Section -->
+    <section id="resources" class="section">
+        <div class="container">
+            <h2 class="section-title">Investor Resources</h2>
+            <div class="resources-content">
+                <div class="resources-overview">
+                    <h3>Comprehensive Materials</h3>
+                    <p>Access our complete investor package including pitch deck, financial projections, and technical documentation.</p>
+                </div>
+                <div class="resource-grid">
+                    <div class="resource-card">
+                        <div class="resource-icon">
+                            <i class="fas fa-file-pdf"></i>
+                        </div>
+                        <h4>Pitch Deck</h4>
+                        <p>Comprehensive overview of iDENTify's vision, market opportunity, and growth strategy</p>
+                        <a href="resources/iDENTify_Pitch.pdf" class="btn btn-primary" target="_blank" type="application/pdf" download="iDENTify_Pitch.pdf">
+                            <i class="fas fa-download"></i> Download PDF
+                        </a>
+                    </div>
+                    <div class="resource-card">
+                        <div class="resource-icon">
+                            <i class="fas fa-chart-line"></i>
+                        </div>
+                        <h4>One-Pager</h4>
+                        <p>Executive summary with key metrics, market size, and investment highlights</p>
+                        <a href="resources/iDENTify_OnePager.pdf" class="btn btn-primary" target="_blank" type="application/pdf" download="iDENTify_OnePager.pdf">
+                            <i class="fas fa-download"></i> Download PDF
+                        </a>
+                    </div>
+                    <div class="resource-card">
+                        <div class="resource-icon">
+                            <i class="fas fa-play-circle"></i>
+                        </div>
+                        <h4>Demo Video</h4>
+                        <p>Product demonstration showing iDENTify's AI capabilities and user experience</p>
+                        <button class="btn btn-secondary" onclick="launchDemo()">
+                            <i class="fas fa-play"></i> Watch Demo
+                        </button>
+                    </div>
+                    <div class="resource-card">
+                        <div class="resource-icon">
+                            <i class="fas fa-calendar-alt"></i>
+                        </div>
+                        <h4>Schedule Meeting</h4>
+                        <p>Book a personalized meeting to discuss investment opportunities and partnership potential</p>
+                        <a href="#contact" class="btn btn-primary">
+                            <i class="fas fa-calendar"></i> Schedule Now
+                        </a>
                     </div>
                 </div>
             </div>
@@ -155,18 +471,14 @@
                                     </div>
                                     
                                     <div class="viewfinder">
-                                        <div class="corner-guide top-left"></div>
-                                        <div class="corner-guide top-right"></div>
-                                        <div class="corner-guide bottom-left"></div>
-                                        <div class="corner-guide bottom-right"></div>
                                         <div class="scan-target">
                                             <i class="fas fa-tooth"></i>
                                         </div>
                                     </div>
                                     
                                     <div class="scanner-controls">
-                                        <button class="scan-btn" onclick="startScan()">
-                                            <i class="fas fa-camera"></i> Start Scan
+                                        <button class="scan-btn" onclick="showDemoInfo()">
+                                            <i class="fas fa-play"></i> View Demo
                                         </button>
                                     </div>
                                 </div>
@@ -176,11 +488,30 @@
                     
                     <div class="demo-results" id="demoResults">
                         <div class="results-header">
-                            <h4>Scan Results</h4>
-                            <p>Click "Start Scan" to begin analysis</p>
+                            <h4>Demo Preview</h4>
+                            <p>Experience iDENTify's AI-powered dental scanning technology</p>
                         </div>
                         <div class="results-content" id="resultsContent">
-                            <!-- Results will be populated here -->
+                            <div class="scan-result">
+                                <div class="health-status healthy">
+                                    <strong>Demo Available</strong><br>
+                                    Watch our comprehensive demo video to see iDENTify in action
+                                </div>
+                                <div style="margin-top: 1rem;">
+                                    <div class="result-item">
+                                        <span class="result-label">AI Accuracy</span>
+                                        <span class="result-value">95%</span>
+                                    </div>
+                                    <div class="result-item">
+                                        <span class="result-label">Scan Time</span>
+                                        <span class="result-value">30 seconds</span>
+                                    </div>
+                                    <div class="result-item">
+                                        <span class="result-label">Detection Range</span>
+                                        <span class="result-value">15+ conditions</span>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -231,12 +562,40 @@
                             <label for="interest">Interest</label>
                             <select id="interest" name="interest" required>
                                 <option value="">Select Interest</option>
-                                <option value="investment">Investment Opportunity</option>
-                                <option value="partnership">Strategic Partnership</option>
-                                <option value="pilot">Pilot Program</option>
-                                <option value="demo">Product Demo</option>
-                                <option value="other">Other</option>
+                                <option value="pre-seed-investment">Pre-Seed Investment</option>
+                                <option value="seed-round-lead">Seed Round Lead</option>
+                                <option value="strategic-investment">Strategic Investment</option>
+                                <option value="follow-on-investment">Follow-on Investment</option>
+                                <option value="board-position">Board Position</option>
+                                <option value="advisory-role">Advisory Role</option>
+                                <option value="partnership-discussion">Partnership Discussion</option>
+                                <option value="pilot-program">Pilot Program</option>
                             </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="investment-range">Investment Range</label>
+                            <select id="investment-range" name="investment-range">
+                                <option value="">Select Range</option>
+                                <option value="25k-100k">$25K - $100K</option>
+                                <option value="100k-500k">$100K - $500K</option>
+                                <option value="500k-1m">$500K - $1M</option>
+                                <option value="1m-plus">$1M+</option>
+                                <option value="not-applicable">Not Applicable</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="timeline">Timeline</label>
+                            <select id="timeline" name="timeline">
+                                <option value="">Select Timeline</option>
+                                <option value="immediate">Immediate</option>
+                                <option value="3-6-months">3-6 months</option>
+                                <option value="6-12-months">6-12 months</option>
+                                <option value="not-applicable">Not Applicable</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="portfolio-focus">Portfolio Focus</label>
+                            <input type="text" id="portfolio-focus" name="portfolio-focus" placeholder="e.g., Healthtech, AI, Consumer, etc.">
                         </div>
                         <div class="form-group">
                             <label for="message">Message</label>
@@ -258,6 +617,11 @@
                 <a href="#hero">Home</a>
                 <a href="#problem">Problem</a>
                 <a href="#solution">Solution</a>
+                <a href="#market">Market</a>
+                <a href="#business-model">Business Model</a>
+                <a href="#competitive">Competitive</a>
+                <a href="#funding">Funding</a>
+                <a href="#resources">Resources</a>
                 <a href="#demo">Demo</a>
                 <a href="#contact">Contact</a>
             </div>
