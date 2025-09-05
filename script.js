@@ -164,7 +164,7 @@ function smoothScrollToSection(targetId) {
 
 // Mobile-optimized number animation with requestIdleCallback
 function animateNumbers(root = document) {
-    const numberElements = root.querySelectorAll('.stat-number, .market-size, .metric-value');
+    const numberElements = root.querySelectorAll('.stat-number, .market-size, .metric-value, .revenue-amount');
     
     numberElements.forEach(numberEl => {
         // Check if already animated to prevent re-animation
@@ -187,7 +187,9 @@ function animateNumbers(root = document) {
             if (unit === 'M') {
                 numberEl.textContent = value.toFixed(1);
             } else if (unit === 'B') {
-                numberEl.textContent = Math.floor(value);
+                numberEl.textContent = (Number.isInteger(parseFloat(numberEl.dataset.target)))
+                    ? Math.floor(value)
+                    : value.toFixed(1);
             } else if (unit === '$') {
                 // If it's a dollar amount and it's an integer, don't show decimals
                 if (Number.isInteger(target)) {
@@ -197,6 +199,8 @@ function animateNumbers(root = document) {
                 }
             } else if (unit === 'months') {
                 numberEl.textContent = value.toFixed(1);
+            } else if (unit === '%') {
+                numberEl.textContent = Math.floor(value);
             } else {
                 numberEl.textContent = Math.floor(value);
             }
@@ -212,29 +216,6 @@ function animateNumbers(root = document) {
     });
 }
 
-// Mobile-optimized funding progress bars animation
-function animateFundingBars() {
-    const progressBars = document.querySelectorAll('.progress-fill');
-    
-    progressBars.forEach(progressBar => {
-        const percentage = parseFloat(progressBar.dataset.percentage) || 0;
-        const isMobile = window.innerWidth <= 768;
-        const duration = isMobile ? 1000 : 1500;
-        const startTime = performance.now();
-
-        function tick(now) {
-            const progress = Math.min((now - startTime) / duration, 1);
-            const width = percentage * progress;
-            progressBar.style.width = width + '%';
-            
-            if (progress < 1) {
-                requestAnimationFrame(tick);
-            }
-        }
-
-        requestAnimationFrame(tick);
-    });
-}
 
 // Simplified demo functionality for mobile performance
 function showDemoInfo() {
@@ -274,19 +255,11 @@ function showDemoInfo() {
 
 // Launch demo function (simplified)
 function launchDemo() {
-    // Scroll to demo section
-    const demoSection = document.querySelector('#demo');
-    if (demoSection) {
-        demoSection.scrollIntoView({
-            behavior: 'smooth',
-            block: 'start'
-        });
+    const target = document.querySelector('#technology') || document.getElementById('demoResults');
+    if (target) {
+        target.scrollIntoView({ behavior: 'smooth', block: 'start' });
     }
-    
-    // Show demo info
-    setTimeout(() => {
-        showDemoInfo();
-    }, 500);
+    setTimeout(() => { showDemoInfo(); }, 300);
 }
 
 // Simulate scan function (simplified for mobile)
@@ -344,9 +317,14 @@ document.addEventListener('DOMContentLoaded', function() {
     // Mobile menu link navigation
     mobileMenuLinks.forEach(link => {
         link.addEventListener('click', function(e) {
+            const href = this.getAttribute('href') || '';
+            if (href.includes('.html')) {
+                // Allow normal navigation for cross-page links
+                closeMobileMenu();
+                return; // do not preventDefault
+            }
             e.preventDefault();
-            const targetId = this.getAttribute('href');
-            smoothScrollToSection(targetId);
+            smoothScrollToSection(href);
         });
     });
     
@@ -358,11 +336,19 @@ document.addEventListener('DOMContentLoaded', function() {
     });
     
     // Desktop/global anchor handling excluding mobile menu
-    document.querySelectorAll('a[href^="#"]:not(.mobile-menu a)').forEach(anchor => {
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        if (anchor.closest('.mobile-menu')) return; // let mobile handler manage
         anchor.addEventListener('click', function (e) {
             e.preventDefault();
-            const targetId = this.getAttribute('href');
-            smoothScrollToSection(targetId);
+            smoothScrollToSection(this.getAttribute('href'));
+        });
+    });
+    
+    // Handle cross-page navigation
+    document.querySelectorAll('a[href$=".html"]').forEach(link => {
+        link.addEventListener('click', function (e) {
+            // Allow normal navigation for cross-page links
+            // No preventDefault needed
         });
     });
     
@@ -422,7 +408,7 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     }
     
-    // Contact form handling (simplified for mobile)
+    // Contact form handling (simplified for mobile) - only if contact form exists
     const contactForm = document.getElementById('contactForm');
     
     if (contactForm) {
@@ -539,13 +525,16 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
     
-    // Simplified resource tracking (removed console.log for performance)
-    document.querySelectorAll('.resource-card .btn').forEach(btn => {
-        btn.addEventListener('click', function(e) {
-            // Future analytics integration can be added here
-            // Removed console.log for mobile performance
+    // Simplified resource tracking (removed console.log for performance) - only if resource cards exist
+    const resourceCards = document.querySelectorAll('.resource-card .btn');
+    if (resourceCards.length > 0) {
+        resourceCards.forEach(btn => {
+            btn.addEventListener('click', function(e) {
+                // Future analytics integration can be added here
+                // Removed console.log for mobile performance
+            });
         });
-    });
+    }
     
     // Mobile-optimized Intersection Observer
     const observerOptions = {
@@ -558,19 +547,9 @@ document.addEventListener('DOMContentLoaded', function() {
             if (entry.isIntersecting) {
                 const section = entry.target;
                 
-                // Animate numbers in market section
-                if (section.id === 'market') {
+                // Animate numbers in various sections
+                if (['tam', 'sam', 'som', 'market-segments', 'business-overview', 'unit-economics', 'financial-projections'].includes(section.id)) {
                     animateNumbers(section);
-                }
-                
-                // Animate numbers in business model section
-                if (section.id === 'business-model') {
-                    animateNumbers(section);
-                }
-                
-                // Animate funding bars in funding section
-                if (section.id === 'funding') {
-                    animateFundingBars();
                 }
             }
         });
@@ -578,12 +557,26 @@ document.addEventListener('DOMContentLoaded', function() {
     
     // Observe sections for animations (only if motion is not reduced)
     if (!prefersReducedMotion) {
-        document.querySelectorAll('#hero, #market, #business-model, #funding').forEach(section => {
-            observer.observe(section);
+        // Check which sections exist on the current page
+        const sectionsToObserve = [];
+        if (document.querySelector('#hero')) sectionsToObserve.push('#hero');
+        if (document.querySelector('#tam')) sectionsToObserve.push('#tam');
+        if (document.querySelector('#sam')) sectionsToObserve.push('#sam');
+        if (document.querySelector('#som')) sectionsToObserve.push('#som');
+        if (document.querySelector('#market-segments')) sectionsToObserve.push('#market-segments');
+        if (document.querySelector('#business-overview')) sectionsToObserve.push('#business-overview');
+        if (document.querySelector('#unit-economics')) sectionsToObserve.push('#unit-economics');
+        if (document.querySelector('#financial-projections')) sectionsToObserve.push('#financial-projections');
+        
+        sectionsToObserve.forEach(selector => {
+            const section = document.querySelector(selector);
+            if (section) observer.observe(section);
         });
         
-        // Animate hero stats immediately on load
-        animateNumbers(document);
+        // Animate hero stats immediately on load if hero section exists
+        if (document.querySelector('#hero')) {
+            animateNumbers(document);
+        }
     }
     
     // Mobile-optimized scroll effect for navbar

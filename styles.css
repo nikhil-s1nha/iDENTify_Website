@@ -510,22 +510,22 @@ body {
     line-height: 1.6;
 }
 
-/* Solution Section */
-.solution-content {
+/* Technology Section */
+.technology-demo-grid {
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 4rem;
-    align-items: center;
+    align-items: start;
 }
 
-.solution-text h3 {
+.technology-text h3 {
     font-size: 1.8rem;
     font-weight: 600;
     margin-bottom: 1.5rem;
     color: var(--navy-900);
 }
 
-.solution-text p {
+.technology-text p {
     font-size: 1.1rem;
     color: var(--navy-600);
     line-height: 1.6;
@@ -551,25 +551,17 @@ body {
     font-size: 1.2rem;
 }
 
-.solution-visual {
+.tech-demo-container {
     display: flex;
     justify-content: center;
 }
 
-.device-demo {
-    width: 200px;
-    height: 200px;
-    background: var(--mint-100);
-    border-radius: 16px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    border: 2px solid var(--mint-300);
-}
-
-.device-icon {
-    font-size: 3rem;
-    color: var(--navy-900);
+.tech-demo-container .demo-interface {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2rem;
+    align-items: start;
+    max-width: 800px;
 }
 
 /* Demo Section */
@@ -942,45 +934,120 @@ body {
     font-size: 0.9rem;
 }
 
-/* Market Opportunity Styles */
-.market-content {
+/* Page-specific styles */
+.page-hero {
+    padding: 8rem 0 4rem;
+    background: var(--mint-100);
     text-align: center;
-    max-width: 1000px;
+}
+
+.page-hero h1 {
+    font-size: 3rem;
+    font-weight: 700;
+    color: var(--navy-900);
+    margin-bottom: 1rem;
+}
+
+.page-hero p {
+    font-size: 1.2rem;
+    color: var(--navy-600);
+    max-width: 600px;
     margin: 0 auto;
 }
 
-.market-overview {
+.breadcrumb {
+    background: var(--navy-50);
+    padding: 1rem 0;
+    border-bottom: 1px solid var(--mint-200);
+}
+
+.breadcrumb-list {
+    display: flex;
+    list-style: none;
+    gap: 0.5rem;
+    align-items: center;
+}
+
+.breadcrumb-list li {
+    color: var(--navy-600);
+    font-size: 0.9rem;
+}
+
+.breadcrumb-list li:not(:last-child)::after {
+    content: ">";
+    margin-left: 0.5rem;
+    color: var(--navy-400);
+}
+
+.breadcrumb-list a {
+    color: var(--navy-600);
+    text-decoration: none;
+    transition: color 0.2s ease;
+}
+
+.breadcrumb-list a:hover {
+    color: var(--navy-900);
+}
+
+.nav-menu .active {
+    color: var(--navy-900);
+    font-weight: 600;
+}
+
+.page-navigation {
+    padding: 4rem 0;
+    background: var(--mint-50);
+}
+
+.nav-links {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+.nav-link {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 1rem 2rem;
+    background: #ffffff;
+    border: 1px solid var(--mint-200);
+    border-radius: 8px;
+    text-decoration: none;
+    color: var(--navy-700);
+    font-weight: 500;
+    transition: all 0.2s ease;
+}
+
+.nav-link:hover {
+    border-color: var(--mint-300);
+    background: var(--mint-50);
+    color: var(--navy-900);
+}
+
+/* Market Analysis Page Styles */
+.tam-hero, .sam-hero, .som-hero {
+    text-align: center;
     margin-bottom: 3rem;
 }
 
-.market-overview h3 {
-    font-size: 1.8rem;
-    font-weight: 600;
+.tam-number, .sam-number, .som-number {
+    font-size: 4rem;
+    font-weight: 700;
+    color: var(--navy-900);
     margin-bottom: 1rem;
-    color: var(--navy-900);
 }
 
-.market-overview p {
-    font-size: 1.1rem;
-    color: var(--navy-600);
-    line-height: 1.6;
-}
-
-.market-segments h3 {
-    font-size: 1.6rem;
-    font-weight: 600;
-    margin-bottom: 2rem;
-    color: var(--navy-900);
-}
-
-.segments-grid {
+.drivers-grid, .demographics-grid, .positioning-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
     gap: 2rem;
     margin-top: 2rem;
 }
 
-.segment {
+.driver-card, .demo-card, .position-card {
     background: #ffffff;
     border: 1px solid var(--mint-200);
     border-radius: 12px;
@@ -990,24 +1057,194 @@ body {
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
 }
 
-.segment:hover {
+.driver-card:hover, .demo-card:hover, .position-card:hover {
     border-color: var(--mint-300);
     transform: translateY(-2px);
     box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
 }
 
-.segment h4 {
+.driver-icon, .advantage-icon {
+    font-size: 2.5rem;
+    color: var(--navy-900);
+    margin-bottom: 1rem;
+}
+
+.driver-card h4, .demo-card h4, .position-card h4 {
     color: var(--navy-900);
     margin-bottom: 0.5rem;
     font-size: 1.2rem;
     font-weight: 600;
 }
 
-.segment p {
+.driver-card p, .demo-card p, .position-card p {
     color: var(--navy-600);
-    margin-bottom: 1.5rem;
     font-size: 0.9rem;
     line-height: 1.5;
+}
+
+.demo-stat {
+    display: block;
+    font-weight: 600;
+    color: var(--navy-900);
+    margin-top: 0.5rem;
+}
+
+.population-breakdown {
+    background: #ffffff;
+    border: 1px solid var(--mint-200);
+    border-radius: 12px;
+    padding: 2rem;
+    margin-top: 2rem;
+}
+
+.pop-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 0;
+    border-bottom: 1px solid var(--mint-200);
+}
+
+.pop-item:last-child {
+    border-bottom: none;
+}
+
+.pop-item.total {
+    background: var(--mint-50);
+    margin: 1rem -2rem -2rem;
+    padding: 1rem 2rem;
+    border-radius: 0 0 12px 12px;
+    font-weight: 600;
+}
+
+.pop-label {
+    color: var(--navy-700);
+}
+
+.pop-value {
+    color: var(--navy-900);
+    font-weight: 600;
+}
+
+.penetration-timeline {
+    display: grid;
+    gap: 2rem;
+    margin-top: 2rem;
+}
+
+.timeline-item {
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+    background: #ffffff;
+    border: 1px solid var(--mint-200);
+    border-radius: 12px;
+    padding: 2rem;
+    transition: all 0.2s ease;
+}
+
+.timeline-item:hover {
+    border-color: var(--mint-300);
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+}
+
+.timeline-year {
+    background: var(--navy-900);
+    color: #ffffff;
+    padding: 1rem;
+    border-radius: 8px;
+    font-weight: 600;
+    min-width: 80px;
+    text-align: center;
+}
+
+.timeline-content h4 {
+    color: var(--navy-900);
+    margin-bottom: 0.5rem;
+    font-size: 1.2rem;
+    font-weight: 600;
+}
+
+.timeline-content p {
+    color: var(--navy-600);
+    font-size: 0.9rem;
+}
+
+.segments-detailed {
+    display: grid;
+    gap: 2rem;
+    margin-top: 2rem;
+}
+
+.segment-card {
+    background: #ffffff;
+    border: 1px solid var(--mint-200);
+    border-radius: 12px;
+    padding: 2rem;
+    transition: all 0.2s ease;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+}
+
+.segment-card:hover {
+    border-color: var(--mint-300);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+}
+
+.segment-header {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+    margin-bottom: 1.5rem;
+}
+
+.segment-icon {
+    font-size: 2.5rem;
+    color: var(--navy-900);
+}
+
+.segment-info h3 {
+    color: var(--navy-900);
+    margin-bottom: 0.5rem;
+    font-size: 1.5rem;
+    font-weight: 600;
+}
+
+.segment-size {
+    font-size: 2rem;
+    font-weight: 700;
+    color: var(--navy-900);
+}
+
+.segment-details p {
+    color: var(--navy-600);
+    margin-bottom: 1.5rem;
+    line-height: 1.6;
+}
+
+.segment-metrics {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: 1rem;
+}
+
+.segment-metrics .metric {
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+}
+
+.segment-metrics .metric-label {
+    font-size: 0.8rem;
+    color: var(--navy-600);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.segment-metrics .metric-value {
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: var(--navy-900);
 }
 
 .market-size {
@@ -1020,6 +1257,299 @@ body {
 
 .market-unit {
     font-size: 1.5rem;
+    font-weight: 600;
+    color: var(--navy-900);
+}
+
+/* Business Model Page Styles */
+.stream-icon {
+    font-size: 2.5rem;
+    color: var(--navy-900);
+    margin-bottom: 1rem;
+}
+
+.stream-metrics {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+    gap: 1rem;
+    margin-top: 1rem;
+    padding-top: 1rem;
+    border-top: 1px solid var(--mint-200);
+}
+
+.stream-metrics .metric {
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+}
+
+.stream-metrics .metric-label {
+    font-size: 0.8rem;
+    color: var(--navy-600);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.stream-metrics .metric-value {
+    font-size: 1rem;
+    font-weight: 600;
+    color: var(--navy-900);
+}
+
+.phases-timeline {
+    display: grid;
+    gap: 2rem;
+    margin-top: 2rem;
+}
+
+.phase-card {
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+    background: #ffffff;
+    border: 1px solid var(--mint-200);
+    border-radius: 12px;
+    padding: 2rem;
+    transition: all 0.2s ease;
+}
+
+.phase-card:hover {
+    border-color: var(--mint-300);
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+}
+
+.phase-number {
+    background: var(--navy-900);
+    color: #ffffff;
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.5rem;
+    font-weight: 700;
+    flex-shrink: 0;
+}
+
+.phase-content h3 {
+    color: var(--navy-900);
+    margin-bottom: 0.5rem;
+    font-size: 1.3rem;
+    font-weight: 600;
+}
+
+.phase-duration {
+    color: var(--mint-600);
+    font-weight: 600;
+    font-size: 0.9rem;
+    margin-bottom: 0.5rem;
+}
+
+.phase-content p {
+    color: var(--navy-600);
+    margin-bottom: 1rem;
+    line-height: 1.6;
+}
+
+.phase-metrics {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+    gap: 1rem;
+}
+
+.phase-metrics .metric {
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+}
+
+.phase-metrics .metric-label {
+    font-size: 0.8rem;
+    color: var(--navy-600);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.phase-metrics .metric-value {
+    font-size: 1rem;
+    font-weight: 600;
+    color: var(--navy-900);
+}
+
+.economics-overview {
+    text-align: center;
+    margin-bottom: 3rem;
+}
+
+.economics-overview h3 {
+    font-size: 1.8rem;
+    font-weight: 600;
+    margin-bottom: 1rem;
+    color: var(--navy-900);
+}
+
+.economics-overview p {
+    font-size: 1.1rem;
+    color: var(--navy-600);
+    line-height: 1.6;
+}
+
+.metric-icon {
+    font-size: 2.5rem;
+    color: var(--navy-900);
+    margin-bottom: 1rem;
+}
+
+.metric-description {
+    font-size: 0.9rem;
+    color: var(--navy-600);
+    margin-top: 0.5rem;
+    line-height: 1.4;
+}
+
+.advantages-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 2rem;
+    margin-top: 2rem;
+}
+
+.advantage-card {
+    background: #ffffff;
+    border: 1px solid var(--mint-200);
+    border-radius: 12px;
+    padding: 2rem;
+    text-align: center;
+    transition: all 0.2s ease;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+}
+
+.advantage-card:hover {
+    border-color: var(--mint-300);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+}
+
+.advantage-card h4 {
+    color: var(--navy-900);
+    margin-bottom: 0.5rem;
+    font-size: 1.2rem;
+    font-weight: 600;
+}
+
+.advantage-card p {
+    color: var(--navy-600);
+    font-size: 0.9rem;
+    line-height: 1.5;
+}
+
+.projections-overview {
+    text-align: center;
+    margin-bottom: 3rem;
+}
+
+.projections-overview h3 {
+    font-size: 1.8rem;
+    font-weight: 600;
+    margin-bottom: 1rem;
+    color: var(--navy-900);
+}
+
+.projections-overview p {
+    font-size: 1.1rem;
+    color: var(--navy-600);
+    line-height: 1.6;
+}
+
+.projections-timeline {
+    display: grid;
+    gap: 2rem;
+    margin-top: 2rem;
+}
+
+.year-card {
+    background: #ffffff;
+    border: 1px solid var(--mint-200);
+    border-radius: 12px;
+    padding: 2rem;
+    transition: all 0.2s ease;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+}
+
+.year-card:hover {
+    border-color: var(--mint-300);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+}
+
+.year-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1.5rem;
+    padding-bottom: 1rem;
+    border-bottom: 1px solid var(--mint-200);
+}
+
+.year-header h3 {
+    color: var(--navy-900);
+    font-size: 1.5rem;
+    font-weight: 600;
+}
+
+.year-revenue {
+    text-align: right;
+}
+
+.revenue-amount {
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: var(--navy-900);
+}
+
+.revenue-unit {
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: var(--navy-900);
+}
+
+.revenue-label {
+    display: block;
+    font-size: 0.9rem;
+    color: var(--navy-600);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin-top: 0.25rem;
+}
+
+.year-details p {
+    color: var(--navy-600);
+    margin-bottom: 1.5rem;
+    line-height: 1.6;
+}
+
+.year-metrics {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+    gap: 1rem;
+}
+
+.year-metrics .metric {
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+}
+
+.year-metrics .metric-label {
+    font-size: 0.8rem;
+    color: var(--navy-600);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.year-metrics .metric-value {
+    font-size: 1rem;
     font-weight: 600;
     color: var(--navy-900);
 }
@@ -1207,91 +1737,6 @@ body {
     color: var(--navy-500);
 }
 
-/* Funding Section Styles */
-.funding-content {
-    max-width: 1000px;
-    margin: 0 auto;
-}
-
-.funding-overview {
-    text-align: center;
-    margin-bottom: 3rem;
-}
-
-.funding-overview h3 {
-    font-size: 1.8rem;
-    font-weight: 600;
-    margin-bottom: 1rem;
-    color: var(--navy-900);
-}
-
-.funding-overview p {
-    font-size: 1.1rem;
-    color: var(--navy-600);
-    line-height: 1.6;
-}
-
-.funding-breakdown {
-    display: grid;
-    gap: 2rem;
-}
-
-.fund-item {
-    background: #ffffff;
-    border: 1px solid var(--mint-200);
-    border-radius: 12px;
-    padding: 2rem;
-    transition: all 0.2s ease;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
-}
-
-.fund-item:hover {
-    border-color: var(--mint-300);
-    transform: translateY(-2px);
-    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
-}
-
-.fund-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 1rem;
-}
-
-.fund-header h4 {
-    color: var(--navy-900);
-    font-size: 1.2rem;
-    font-weight: 600;
-}
-
-.fund-amount {
-    color: var(--navy-700);
-    font-weight: 600;
-    font-size: 0.9rem;
-}
-
-.progress-bar {
-    width: 100%;
-    height: 8px;
-    background: var(--mint-200);
-    border-radius: 4px;
-    margin-bottom: 1rem;
-    overflow: hidden;
-}
-
-.progress-fill {
-    height: 100%;
-    background: var(--mint-500);
-    border-radius: 4px;
-    width: 0%;
-    transition: width 1.5s ease;
-}
-
-.fund-item p {
-    color: var(--navy-600);
-    font-size: 0.9rem;
-    line-height: 1.5;
-}
 
 /* Resource Downloads Styles */
 .resources-content {
@@ -1489,10 +1934,15 @@ body {
         font-size: 0.75rem;
     }
 
-    .solution-content {
+    .technology-demo-grid {
         grid-template-columns: 1fr;
         gap: 2rem;
         text-align: center;
+    }
+    
+    .tech-demo-container .demo-interface {
+        grid-template-columns: 1fr;
+        gap: 2rem;
     }
 
     .contact-content {
@@ -1521,15 +1971,107 @@ body {
         grid-template-columns: 1fr;
     }
     
+    /* Page-specific mobile styles */
+    .page-hero h1 {
+        font-size: 2.5rem;
+    }
+    
+    .tam-number, .sam-number, .som-number {
+        font-size: 3rem;
+    }
+    
+    .drivers-grid, .demographics-grid, .positioning-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .penetration-timeline {
+        gap: 1rem;
+    }
+    
+    .timeline-item {
+        flex-direction: column;
+        text-align: center;
+        gap: 1rem;
+    }
+    
+    .timeline-year {
+        min-width: auto;
+    }
+    
+    .segments-detailed {
+        gap: 1rem;
+    }
+    
+    .segment-header {
+        flex-direction: column;
+        text-align: center;
+        gap: 1rem;
+    }
+    
+    .segment-metrics {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    
+    .phases-timeline {
+        gap: 1rem;
+    }
+    
+    .phase-card {
+        flex-direction: column;
+        text-align: center;
+        gap: 1rem;
+    }
+    
+    .phase-number {
+        width: 50px;
+        height: 50px;
+        font-size: 1.2rem;
+    }
+    
+    .phase-metrics {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    
+    .advantages-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .projections-timeline {
+        gap: 1rem;
+    }
+    
+    .year-header {
+        flex-direction: column;
+        text-align: center;
+        gap: 1rem;
+    }
+    
+    .year-revenue {
+        text-align: center;
+    }
+    
+    .revenue-amount {
+        font-size: 2rem;
+    }
+    
+    .year-metrics {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    
+    .nav-links {
+        flex-direction: column;
+        gap: 1rem;
+    }
+    
+    .nav-link {
+        width: 100%;
+        justify-content: center;
+    }
+    
     .competitive-table {
         min-width: 400px;
     }
     
-    .fund-header {
-        flex-direction: column;
-        align-items: flex-start;
-        gap: 0.5rem;
-    }
     
     .market-size {
         font-size: 2rem;
@@ -1734,9 +2276,6 @@ body {
         font-size: 1.3rem;
     }
     
-    .fund-amount {
-        font-size: 0.8rem;
-    }
     
     .resource-card {
         padding: 1.5rem;

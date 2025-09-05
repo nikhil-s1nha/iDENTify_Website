@@ -1,0 +1,449 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="format-detection" content="telephone=no">
+    <title>Market Analysis - iDENTify</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <img src="assets/logo.png" alt="iDENTify Logo" class="logo-image" width="40" height="40" decoding="async" srcset="assets/logo.png 1x, assets/logo@2x.png 2x">
+                <h2>iDENTify</h2>
+            </div>
+            <ul class="nav-menu">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="index.html#problem">Problem</a></li>
+                <li><a href="index.html#technology">Technology</a></li>
+                <li><a href="market.html" class="active">Market Analysis</a></li>
+                <li><a href="business.html">Business Model</a></li>
+                <li><a href="index.html#resources">Resources</a></li>
+                <li><a href="index.html#contact">Contact</a></li>
+            </ul>
+            <button class="mobile-menu-toggle" aria-label="Toggle mobile menu" aria-expanded="false" aria-controls="mobileMenu">
+                <div class="hamburger">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+            </button>
+        </div>
+    </nav>
+
+    <!-- Mobile Menu Overlay -->
+    <div class="mobile-menu-overlay"></div>
+    <div id="mobileMenu" class="mobile-menu" role="dialog" aria-modal="true" aria-hidden="true">
+        <div class="mobile-menu-header">
+            <h3>iDENTify</h3>
+            <button class="mobile-menu-close" aria-label="Close mobile menu">
+                <i class="fas fa-times"></i>
+            </button>
+        </div>
+        <ul class="mobile-menu-nav">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="index.html#problem">Problem</a></li>
+            <li><a href="index.html#technology">Technology</a></li>
+            <li><a href="market.html">Market Analysis</a></li>
+            <li><a href="business.html">Business Model</a></li>
+            <li><a href="index.html#resources">Resources</a></li>
+            <li><a href="index.html#contact">Contact</a></li>
+        </ul>
+    </div>
+
+    <!-- Breadcrumb Navigation -->
+    <div class="breadcrumb">
+        <div class="container">
+            <nav aria-label="Breadcrumb">
+                <ol class="breadcrumb-list">
+                    <li><a href="index.html">Home</a></li>
+                    <li aria-current="page">Market Analysis</li>
+                </ol>
+            </nav>
+        </div>
+    </div>
+
+    <!-- Hero Section -->
+    <section class="page-hero">
+        <div class="container">
+            <h1>Market Analysis</h1>
+            <p>Comprehensive breakdown of the $150B global dental market opportunity</p>
+        </div>
+    </section>
+
+    <!-- TAM Section -->
+    <section id="tam" class="section">
+        <div class="container">
+            <h2 class="section-title">Total Addressable Market (TAM)</h2>
+            <div class="market-overview">
+                <div class="tam-hero">
+                    <div class="tam-number">
+                        <span class="market-size" data-target="150">0</span><span class="market-unit">B</span>
+                    </div>
+                    <h3>Global Dental Industry</h3>
+                    <p>The dental industry represents a massive $150B global market with strong growth fundamentals and increasing digitization trends.</p>
+                </div>
+                
+                <div class="tam-breakdown">
+                    <h3>Market Drivers</h3>
+                    <div class="drivers-grid">
+                        <div class="driver-card">
+                            <div class="driver-icon">
+                                <i class="fas fa-chart-line"></i>
+                            </div>
+                            <h4>5-7% Annual Growth</h4>
+                            <p>Sustained growth driven by aging population and preventive care awareness</p>
+                        </div>
+                        <div class="driver-card">
+                            <div class="driver-icon">
+                                <i class="fas fa-users"></i>
+                            </div>
+                            <h4>Aging Population</h4>
+                            <p>Baby boomers entering high-dental-need years, increasing demand for dental services</p>
+                        </div>
+                        <div class="driver-card">
+                            <div class="driver-icon">
+                                <i class="fas fa-mobile-alt"></i>
+                            </div>
+                            <h4>Digital Health Adoption</h4>
+                            <p>Rapid adoption of digital health solutions accelerated by COVID-19 pandemic</p>
+                        </div>
+                        <div class="driver-card">
+                            <div class="driver-icon">
+                                <i class="fas fa-shield-alt"></i>
+                            </div>
+                            <h4>Preventive Care Focus</h4>
+                            <p>Shift toward preventive care reducing long-term costs and improving outcomes</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SAM Section -->
+    <section id="sam" class="section">
+        <div class="container">
+            <h2 class="section-title">Serviceable Addressable Market (SAM)</h2>
+            <div class="sam-content">
+                <div class="sam-hero">
+                    <div class="sam-number">
+                        <span class="market-size" data-target="45">0</span><span class="market-unit">B</span>
+                    </div>
+                    <h3>Consumer Digital Health Segment</h3>
+                    <p>Our primary target market focuses on adults with smartphones seeking better dental health monitoring and early detection.</p>
+                </div>
+                
+                <div class="sam-details">
+                    <div class="target-demographics">
+                        <h3>Target Demographics</h3>
+                        <div class="demographics-grid">
+                            <div class="demo-card">
+                                <h4>Age Range</h4>
+                                <p>25-65 years old</p>
+                                <span class="demo-stat">180M Americans</span>
+                            </div>
+                            <div class="demo-card">
+                                <h4>Smartphone Users</h4>
+                                <p>Adults with smartphones</p>
+                                <span class="demo-stat">95% penetration</span>
+                            </div>
+                            <div class="demo-card">
+                                <h4>Dental Concerns</h4>
+                                <p>Regular dental health monitoring</p>
+                                <span class="demo-stat">68% interested</span>
+                            </div>
+                            <div class="demo-card">
+                                <h4>Geographic Focus</h4>
+                                <p>North America & Europe</p>
+                                <span class="demo-stat">Initial markets</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="addressable-population">
+                        <h3>Addressable Population</h3>
+                        <div class="population-breakdown">
+                            <div class="pop-item">
+                                <span class="pop-label">Total Addressable Adults</span>
+                                <span class="pop-value">180M</span>
+                            </div>
+                            <div class="pop-item">
+                                <span class="pop-label">Smartphone Penetration</span>
+                                <span class="pop-value">95%</span>
+                            </div>
+                            <div class="pop-item">
+                                <span class="pop-label">Dental Health Interest</span>
+                                <span class="pop-value">68%</span>
+                            </div>
+                            <div class="pop-item total">
+                                <span class="pop-label">Serviceable Population</span>
+                                <span class="pop-value">116M</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SOM Section -->
+    <section id="som" class="section">
+        <div class="container">
+            <h2 class="section-title">Serviceable Obtainable Market (SOM)</h2>
+            <div class="som-content">
+                <div class="som-hero">
+                    <div class="som-number">
+                        <span class="market-size" data-target="2.5">0</span><span class="market-unit">B</span>
+                    </div>
+                    <h3>Realistic Capture Opportunity</h3>
+                    <p>Conservative 5-year projection capturing 1% of SAM through strategic market penetration and competitive positioning.</p>
+                </div>
+                
+                <div class="som-breakdown">
+                    <div class="penetration-strategy">
+                        <h3>Market Penetration Strategy</h3>
+                        <div class="penetration-timeline">
+                            <div class="timeline-item">
+                                <div class="timeline-year">Year 1</div>
+                                <div class="timeline-content">
+                                    <h4>Beta Launch</h4>
+                                    <p>0.01% penetration - 1,160 users</p>
+                                </div>
+                            </div>
+                            <div class="timeline-item">
+                                <div class="timeline-year">Year 2</div>
+                                <div class="timeline-content">
+                                    <h4>Consumer Launch</h4>
+                                    <p>0.1% penetration - 116K users</p>
+                                </div>
+                            </div>
+                            <div class="timeline-item">
+                                <div class="timeline-year">Year 3</div>
+                                <div class="timeline-content">
+                                    <h4>B2B Expansion</h4>
+                                    <p>0.3% penetration - 348K users</p>
+                                </div>
+                            </div>
+                            <div class="timeline-item">
+                                <div class="timeline-year">Year 4</div>
+                                <div class="timeline-content">
+                                    <h4>Enterprise Partnerships</h4>
+                                    <p>0.6% penetration - 696K users</p>
+                                </div>
+                            </div>
+                            <div class="timeline-item">
+                                <div class="timeline-year">Year 5</div>
+                                <div class="timeline-content">
+                                    <h4>Market Leadership</h4>
+                                    <p>1.0% penetration - 1.16M users</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="competitive-positioning">
+                        <h3>Competitive Positioning</h3>
+                        <div class="positioning-grid">
+                            <div class="position-card">
+                                <h4>First-Mover Advantage</h4>
+                                <p>First consumer-facing dental AI platform with regulatory strategy in progress</p>
+                            </div>
+                            <div class="position-card">
+                                <h4>Technology Differentiation</h4>
+                                <p>Proprietary computer vision algorithms with 95% accuracy</p>
+                            </div>
+                            <div class="position-card">
+                                <h4>Cost Advantage</h4>
+                                <p>$9.99/month vs $200+ traditional dental visits</p>
+                            </div>
+                            <div class="position-card">
+                                <h4>Mobile-First Approach</h4>
+                                <p>Instant access vs appointment-based competitors</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Market Segments Deep Dive -->
+    <section id="market-segments" class="section">
+        <div class="container">
+            <h2 class="section-title">Market Segments Deep Dive</h2>
+            <div class="segments-detailed">
+                <div class="segment-card">
+                    <div class="segment-header">
+                        <div class="segment-icon">
+                            <i class="fas fa-user"></i>
+                        </div>
+                        <div class="segment-info">
+                            <h3>Consumer Market</h3>
+                            <div class="segment-size">
+                                <span class="market-size" data-target="45">0</span><span class="market-unit">B</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="segment-details">
+                        <p>Adults seeking preventive care and early detection of dental issues through convenient mobile solutions.</p>
+                        <div class="segment-metrics">
+                            <div class="metric">
+                                <span class="metric-label">Target Users</span>
+                                <span class="metric-value">116M</span>
+                            </div>
+                            <div class="metric">
+                                <span class="metric-label">Growth Rate</span>
+                                <span class="metric-value">12% CAGR</span>
+                            </div>
+                            <div class="metric">
+                                <span class="metric-label">Price Point</span>
+                                <span class="metric-value">$9.99/month</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="segment-card">
+                    <div class="segment-header">
+                        <div class="segment-icon">
+                            <i class="fas fa-hospital"></i>
+                        </div>
+                        <div class="segment-info">
+                            <h3>Dental Practices</h3>
+                            <div class="segment-size">
+                                <span class="market-size" data-target="65">0</span><span class="market-unit">B</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="segment-details">
+                        <p>Clinics wanting to reduce emergency visits, improve patient monitoring, and enhance practice efficiency.</p>
+                        <div class="segment-metrics">
+                            <div class="metric">
+                                <span class="metric-label">Target Practices</span>
+                                <span class="metric-value">200K</span>
+                            </div>
+                            <div class="metric">
+                                <span class="metric-label">Growth Rate</span>
+                                <span class="metric-value">8% CAGR</span>
+                            </div>
+                            <div class="metric">
+                                <span class="metric-label">Price Point</span>
+                                <span class="metric-value">$299/month</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="segment-card">
+                    <div class="segment-header">
+                        <div class="segment-icon">
+                            <i class="fas fa-shield-alt"></i>
+                        </div>
+                        <div class="segment-info">
+                            <h3>Insurance Companies</h3>
+                            <div class="segment-size">
+                                <span class="market-size" data-target="25">0</span><span class="market-unit">B</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="segment-details">
+                        <p>Providers looking to reduce claims costs through preventive care and early intervention programs.</p>
+                        <div class="segment-metrics">
+                            <div class="metric">
+                                <span class="metric-label">Target Insurers</span>
+                                <span class="metric-value">500</span>
+                            </div>
+                            <div class="metric">
+                                <span class="metric-label">Growth Rate</span>
+                                <span class="metric-value">15% CAGR</span>
+                            </div>
+                            <div class="metric">
+                                <span class="metric-label">Price Point</span>
+                                <span class="metric-value">$0.50/scan</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="segment-card">
+                    <div class="segment-header">
+                        <div class="segment-icon">
+                            <i class="fas fa-pills"></i>
+                        </div>
+                        <div class="segment-info">
+                            <h3>Pharmaceutical</h3>
+                            <div class="segment-size">
+                                <span class="market-size" data-target="15">0</span><span class="market-unit">B</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="segment-details">
+                        <p>Companies developing oral health products seeking real-world data and patient insights.</p>
+                        <div class="segment-metrics">
+                            <div class="metric">
+                                <span class="metric-label">Target Companies</span>
+                                <span class="metric-value">50</span>
+                            </div>
+                            <div class="metric">
+                                <span class="metric-label">Growth Rate</span>
+                                <span class="metric-value">10% CAGR</span>
+                            </div>
+                            <div class="metric">
+                                <span class="metric-label">Price Point</span>
+                                <span class="metric-value">$100K+/year</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Navigation Links -->
+    <section class="page-navigation">
+        <div class="container">
+            <div class="nav-links">
+                <a href="index.html" class="nav-link prev">
+                    <i class="fas fa-arrow-left"></i>
+                    <span>Back to Home</span>
+                </a>
+                <a href="business.html" class="nav-link next">
+                    <span>Business Model</span>
+                    <i class="fas fa-arrow-right"></i>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-content">
+            <h3>iDENTify</h3>
+            <p>Transforming dental health through AI innovation</p>
+            <div class="footer-links">
+                <a href="index.html">Home</a>
+                <a href="index.html#problem">Problem</a>
+                <a href="index.html#technology">Technology</a>
+                <a href="market.html">Market Analysis</a>
+                <a href="business.html">Business Model</a>
+                <a href="index.html#resources">Resources</a>
+                <a href="index.html#contact">Contact</a>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 iDENTify. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="script.js"></script>
+</body>
+</html>
