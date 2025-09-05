@@ -1,5 +1,90 @@
 // Mobile-optimized JavaScript for iDENTify website
 
+// Scroll lock variables
+let scrollY = 0;
+
+// Focus management variables
+let previouslyFocusedEl = null;
+let focusTrapEnabled = false;
+const focusableSelector = 'a[href], button:not([disabled]), input:not([disabled]), select:not([disabled]), textarea:not([disabled]), [tabindex]:not([tabindex="-1"])';
+
+// Fixed-position scroll locking for better mobile experience
+function lockScroll() {
+    scrollY = window.scrollY;
+    document.body.style.position = 'fixed';
+    document.body.style.top = `-${scrollY}px`;
+    document.body.style.left = '0';
+    document.body.style.right = '0';
+}
+
+function unlockScroll() {
+    document.body.style.position = '';
+    document.body.style.top = '';
+    document.body.style.left = '';
+    document.body.style.right = '';
+    window.scrollTo(0, scrollY);
+}
+
+// Focus management utilities
+function focusFirstElement(container) {
+    const focusableElements = container.querySelectorAll(focusableSelector);
+    if (focusableElements.length > 0) {
+        focusableElements[0].focus();
+    }
+}
+
+function enableFocusTrap(container) {
+    if (focusTrapEnabled) return;
+    
+    focusTrapEnabled = true;
+    
+    const focusableElements = Array.from(container.querySelectorAll(focusableSelector));
+    if (focusableElements.length === 0) return;
+    
+    const firstElement = focusableElements[0];
+    const lastElement = focusableElements[focusableElements.length - 1];
+    
+    function handleTabKey(e) {
+        if (!focusTrapEnabled || !document.querySelector('.mobile-menu.active')) {
+            return;
+        }
+        
+        if (e.key === 'Tab') {
+            if (e.shiftKey) {
+                // Shift + Tab
+                if (document.activeElement === firstElement) {
+                    e.preventDefault();
+                    lastElement.focus();
+                }
+            } else {
+                // Tab
+                if (document.activeElement === lastElement) {
+                    e.preventDefault();
+                    firstElement.focus();
+                }
+            }
+        }
+    }
+    
+    document.addEventListener('keydown', handleTabKey);
+    
+    // Store the handler for cleanup
+    container._focusTrapHandler = handleTabKey;
+}
+
+function disableFocusTrap() {
+    if (!focusTrapEnabled) return;
+    
+    focusTrapEnabled = false;
+    
+    // Remove the event listener
+    const mobileMenu = document.querySelector('.mobile-menu');
+    if (mobileMenu && mobileMenu._focusTrapHandler) {
+        document.removeEventListener('keydown', mobileMenu._focusTrapHandler);
+        delete mobileMenu._focusTrapHandler;
+    }
+}
+
 // Mobile Navigation Functionality
 function toggleMobileMenu() {
     const mobileMenu = document.querySelector('.mobile-menu');
@@ -9,19 +94,25 @@ function toggleMobileMenu() {
     const isOpen = mobileMenu.classList.contains('active');
     
     if (isOpen) {
-        // Close menu
-        mobileMenu.classList.remove('active');
-        mobileMenuOverlay.classList.remove('active');
-        mobileMenuToggle.classList.remove('active');
-        mobileMenuToggle.setAttribute('aria-expanded', 'false');
-        document.body.style.overflow = '';
+        // Close menu - delegate to closeMobileMenu for proper focus management
+        closeMobileMenu();
     } else {
         // Open menu
+        // Store the currently focused element before opening
+        previouslyFocusedEl = document.activeElement;
+        
         mobileMenu.classList.add('active');
         mobileMenuOverlay.classList.add('active');
         mobileMenuToggle.classList.add('active');
         mobileMenuToggle.setAttribute('aria-expanded', 'true');
-        document.body.style.overflow = 'hidden';
+        mobileMenu.setAttribute('aria-hidden', 'false');
+        lockScroll();
+        
+        // Focus management: move focus to first focusable element in menu
+        focusFirstElement(mobileMenu);
+        
+        // Enable focus trap
+        enableFocusTrap(mobileMenu);
     }
 }
 
@@ -35,7 +126,21 @@ function closeMobileMenu() {
     mobileMenuOverlay.classList.remove('active');
     mobileMenuToggle.classList.remove('active');
     mobileMenuToggle.setAttribute('aria-expanded', 'false');
-    document.body.style.overflow = '';
+    mobileMenu.setAttribute('aria-hidden', 'true');
+    unlockScroll();
+    
+    // Disable focus trap
+    disableFocusTrap();
+    
+    // Restore focus to previously focused element or toggle button
+    if (previouslyFocusedEl && previouslyFocusedEl !== document.body) {
+        previouslyFocusedEl.focus();
+    } else {
+        mobileMenuToggle.focus();
+    }
+    
+    // Clear the stored element
+    previouslyFocusedEl = null;
 }
 
 // Smooth scrolling for navigation links (mobile-optimized)
@@ -45,17 +150,21 @@ function smoothScrollToSection(targetId) {
         // Close mobile menu if open
         closeMobileMenu();
         
+        // Get navbar height from CSS variable
+        const navH = getComputedStyle(document.documentElement).getPropertyValue('--navbar-height').replace('px','') || 72;
+        const y = target.getBoundingClientRect().top + window.pageYOffset - Number(navH);
+        
         // Smooth scroll with mobile-optimized timing
-        target.scrollIntoView({
-            behavior: 'smooth',
-            block: 'start'
+        window.scrollTo({
+            top: y,
+            behavior: 'smooth'
         });
     }
 }
 
 // Mobile-optimized number animation with requestIdleCallback
-function animateNumbers() {
-    const numberElements = document.querySelectorAll('.stat-number, .market-size, .metric-value');
+function animateNumbers(root = document) {
+    const numberElements = root.querySelectorAll('.stat-number, .market-size, .metric-value');
     
     numberElements.forEach(numberEl => {
         // Check if already animated to prevent re-animation
@@ -93,21 +202,13 @@ function animateNumbers() {
             }
             
             if (progress < 1) {
-                // Use requestIdleCallback on mobile for better performance
-                if (isMobile && window.requestIdleCallback) {
-                    requestIdleCallback(() => requestAnimationFrame(tick));
-                } else {
-                    requestAnimationFrame(tick);
-                }
+                // Use requestAnimationFrame for consistent frame rate
+                requestAnimationFrame(tick);
             }
         }
 
-        // Start animation with idle callback on mobile
-        if (isMobile && window.requestIdleCallback) {
-            requestIdleCallback(() => requestAnimationFrame(tick));
-        } else {
-            requestAnimationFrame(tick);
-        }
+        // Start animation with requestAnimationFrame
+        requestAnimationFrame(tick);
     });
 }
 
@@ -127,19 +228,11 @@ function animateFundingBars() {
             progressBar.style.width = width + '%';
             
             if (progress < 1) {
-                if (isMobile && window.requestIdleCallback) {
-                    requestIdleCallback(() => requestAnimationFrame(tick));
-                } else {
-                    requestAnimationFrame(tick);
-                }
+                requestAnimationFrame(tick);
             }
         }
 
-        if (isMobile && window.requestIdleCallback) {
-            requestIdleCallback(() => requestAnimationFrame(tick));
-        } else {
-            requestAnimationFrame(tick);
-        }
+        requestAnimationFrame(tick);
     });
 }
 
@@ -155,7 +248,7 @@ function showDemoInfo() {
                     <strong>Demo Video Available</strong><br>
                     Watch our comprehensive product demonstration
                 </div>
-                <div style="margin-top: 1rem;">
+                <div class="mt-16">
                     <div class="result-item">
                         <span class="result-label">Video Length</span>
                         <span class="result-value">3:45 min</span>
@@ -169,8 +262,8 @@ function showDemoInfo() {
                         <span class="result-value">Available</span>
                     </div>
                 </div>
-                <div style="margin-top: 1.5rem; text-align: center;">
-                    <button class="btn btn-primary" onclick="launchDemo()" style="width: 100%;">
+                <div class="mt-24 text-center">
+                    <button class="btn btn-primary w-100" onclick="launchDemo()">
                         <i class="fas fa-play"></i> Watch Full Demo
                     </button>
                 </div>
@@ -227,6 +320,9 @@ function simulateScan() {
 
 // Mobile-specific optimizations and event listeners
 document.addEventListener('DOMContentLoaded', function() {
+    // Check for reduced motion preference
+    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    
     // Mobile navigation event listeners
     const mobileMenuToggle = document.querySelector('.mobile-menu-toggle');
     const mobileMenuClose = document.querySelector('.mobile-menu-close');
@@ -254,8 +350,15 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
     
-    // Desktop navigation links (simplified)
-    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+    // Add Escape key handler for mobile menu
+    document.addEventListener('keydown', e => {
+        if (e.key === 'Escape' && document.querySelector('.mobile-menu.active')) {
+            closeMobileMenu();
+        }
+    });
+    
+    // Desktop/global anchor handling excluding mobile menu
+    document.querySelectorAll('a[href^="#"]:not(.mobile-menu a)').forEach(anchor => {
         anchor.addEventListener('click', function (e) {
             e.preventDefault();
             const targetId = this.getAttribute('href');
@@ -288,20 +391,27 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     }
     
-    // Viewport change detection for device rotation
-    let currentOrientation = window.orientation || 0;
-    window.addEventListener('orientationchange', function() {
-        setTimeout(() => {
-            const newOrientation = window.orientation || 0;
-            if (newOrientation !== currentOrientation) {
-                currentOrientation = newOrientation;
-                // Close mobile menu on orientation change
-                if (document.querySelector('.mobile-menu.active')) {
-                    closeMobileMenu();
-                }
+    // Viewport change detection for device rotation using modern APIs
+    const mql = window.matchMedia('(orientation: portrait)');
+    let wasPortrait = mql.matches;
+    
+    mql.addEventListener('change', e => {
+        if (e.matches !== wasPortrait) {
+            wasPortrait = e.matches;
+            if (document.querySelector('.mobile-menu.active')) {
+                closeMobileMenu();
             }
-        }, 100);
+        }
     });
+    
+    // Optional: Also watch screen.orientation when available
+    if (screen.orientation) {
+        screen.orientation.addEventListener('change', () => {
+            if (document.querySelector('.mobile-menu.active')) {
+                closeMobileMenu();
+            }
+        });
+    }
     
     // Connection speed detection for conditional loading
     if ('connection' in navigator) {
@@ -450,12 +560,12 @@ document.addEventListener('DOMContentLoaded', function() {
                 
                 // Animate numbers in market section
                 if (section.id === 'market') {
-                    animateNumbers();
+                    animateNumbers(section);
                 }
                 
                 // Animate numbers in business model section
                 if (section.id === 'business-model') {
-                    animateNumbers();
+                    animateNumbers(section);
                 }
                 
                 // Animate funding bars in funding section
@@ -466,10 +576,15 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }, observerOptions);
     
-    // Observe sections for animations
-    document.querySelectorAll('#market, #business-model, #funding').forEach(section => {
-        observer.observe(section);
-    });
+    // Observe sections for animations (only if motion is not reduced)
+    if (!prefersReducedMotion) {
+        document.querySelectorAll('#hero, #market, #business-model, #funding').forEach(section => {
+            observer.observe(section);
+        });
+        
+        // Animate hero stats immediately on load
+        animateNumbers(document);
+    }
     
     // Mobile-optimized scroll effect for navbar
     const navbar = document.querySelector('.navbar');
