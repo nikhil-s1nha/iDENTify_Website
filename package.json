@@ -1,0 +1,13 @@
+{
+  "name": "identify-website",
+  "version": "1.0.0",
+  "description": "iDENTify website with maintenance mode",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "node server.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
+}
+
