@@ -185,7 +185,7 @@ body {
     padding: 0 20px;
     display: grid;
     grid-template-columns: 1fr 1fr;
-    gap: 4rem;
+    gap: 5rem;
     align-items: center;
     position: relative;
     z-index: 1;
@@ -203,7 +203,7 @@ body {
 .hero-content h1 {
     font-size: 4rem;
     font-weight: 800;
-    margin-bottom: 1rem;
+    margin-bottom: 2rem;
     color: #1e40af;
     background: linear-gradient(135deg, #1e40af 0%, #3b82f6 100%);
     -webkit-background-clip: text;
@@ -214,21 +214,21 @@ body {
 .hero-content h2 {
     font-size: 2rem;
     font-weight: 600;
-    margin-bottom: 1.5rem;
+    margin-bottom: 2.5rem;
     color: #374151;
 }
 
 .hero-content p {
     font-size: 1.2rem;
-    margin-bottom: 2rem;
+    margin-bottom: 3rem;
     color: #6b7280;
     line-height: 1.7;
 }
 
 .hero-buttons {
     display: flex;
-    gap: 1rem;
-    margin-bottom: 3rem;
+    gap: 1.5rem;
+    margin-bottom: 4rem;
 }
 
 .btn {
@@ -366,7 +366,7 @@ body {
 
 /* Section Styles */
 .section {
-    padding: 6rem 0;
+    padding: 8rem 0;
     background: white;
 }
 
@@ -378,7 +378,7 @@ body {
     text-align: center;
     font-size: 2.5rem;
     font-weight: 800;
-    margin-bottom: 4rem;
+    margin-bottom: 5rem;
     color: #1e293b;
     position: relative;
 }
@@ -399,20 +399,20 @@ body {
 .problem-content {
     display: grid;
     grid-template-columns: 2fr 1fr;
-    gap: 4rem;
+    gap: 5rem;
     align-items: start;
 }
 
 .problem-text h3 {
     font-size: 2rem;
-    margin-bottom: 1.5rem;
+    margin-bottom: 2rem;
     color: #dc2626;
 }
 
 .problem-text p {
     font-size: 1.1rem;
     color: #6b7280;
-    margin-bottom: 2rem;
+    margin-bottom: 2.5rem;
     line-height: 1.7;
 }
 
@@ -442,12 +442,12 @@ body {
 
 .problem-stats {
     display: grid;
-    gap: 1.5rem;
+    gap: 2rem;
 }
 
 .stat-card {
     background: white;
-    padding: 2rem;
+    padding: 2.5rem;
     border-radius: 16px;
     text-align: center;
     border: 2px solid #e5e7eb;
@@ -476,33 +476,33 @@ body {
 .solution-content {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    gap: 4rem;
+    gap: 5rem;
     align-items: center;
 }
 
 .solution-text h3 {
     font-size: 2rem;
-    margin-bottom: 1.5rem;
+    margin-bottom: 2rem;
     color: #059669;
 }
 
 .solution-text p {
     font-size: 1.1rem;
-    margin-bottom: 2rem;
+    margin-bottom: 2.5rem;
     color: #374151;
     line-height: 1.7;
 }
 
 .solution-features {
     display: grid;
-    gap: 1.5rem;
+    gap: 2rem;
 }
 
 .feature {
     display: flex;
     align-items: flex-start;
-    gap: 1rem;
-    padding: 1.5rem;
+    gap: 1.5rem;
+    padding: 2rem;
     background: #f8fafc;
     border-radius: 12px;
     border-left: 4px solid #1e40af;
@@ -596,7 +596,7 @@ body {
 /* Technology Section */
 .technology-content {
     display: grid;
-    gap: 4rem;
+    gap: 5rem;
 }
 
 .tech-overview {
@@ -607,7 +607,7 @@ body {
 
 .tech-overview h3 {
     font-size: 2rem;
-    margin-bottom: 1.5rem;
+    margin-bottom: 2rem;
     color: #1e293b;
 }
 
@@ -620,7 +620,7 @@ body {
 .tech-specs {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-    gap: 2rem;
+    gap: 2.5rem;
 }
 
 .tech-card {
@@ -666,7 +666,7 @@ body {
 /* Market Section */
 .market-content {
     display: grid;
-    gap: 4rem;
+    gap: 5rem;
 }
 
 .market-overview {
@@ -677,7 +677,7 @@ body {
 
 .market-overview h3 {
     font-size: 2rem;
-    margin-bottom: 1rem;
+    margin-bottom: 1.5rem;
     color: #059669;
 }
 
@@ -690,7 +690,7 @@ body {
 .segments-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-    gap: 2rem;
+    gap: 2.5rem;
 }
 
 .segment {
@@ -734,13 +734,13 @@ body {
 /* Business Model Section */
 .business-content {
     display: grid;
-    gap: 4rem;
+    gap: 5rem;
 }
 
 .revenue-streams h3,
 .business-metrics h3 {
     font-size: 1.8rem;
-    margin-bottom: 2rem;
+    margin-bottom: 2.5rem;
     color: #1e293b;
     text-align: center;
 }
@@ -748,7 +748,7 @@ body {
 .stream-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-    gap: 2rem;
+    gap: 2.5rem;
 }
 
 .stream-card {
@@ -788,7 +788,7 @@ body {
 .metrics-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    gap: 2rem;
+    gap: 2.5rem;
 }
 
 .metric-card {
@@ -822,13 +822,13 @@ body {
 /* Team Section */
 .team-content {
     display: grid;
-    gap: 4rem;
+    gap: 5rem;
 }
 
 .team-members h3,
 .advisors h3 {
     font-size: 1.8rem;
-    margin-bottom: 2rem;
+    margin-bottom: 2.5rem;
     color: #1e293b;
     text-align: center;
 }
@@ -836,7 +836,7 @@ body {
 .members-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-    gap: 2rem;
+    gap: 2.5rem;
 }
 
 .team-member {
@@ -893,7 +893,7 @@ body {
 .advisors-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-    gap: 2rem;
+    gap: 2.5rem;
 }
 
 .advisor {
@@ -927,7 +927,7 @@ body {
 .cta-section {
     background: linear-gradient(135deg, #1e40af 0%, #3b82f6 100%);
     color: white;
-    padding: 5rem 0;
+    padding: 6rem 0;
     text-align: center;
     position: relative;
     overflow: hidden;
@@ -952,12 +952,12 @@ body {
 .cta-content h2 {
     font-size: 2.5rem;
     font-weight: 800;
-    margin-bottom: 1rem;
+    margin-bottom: 1.5rem;
 }
 
 .cta-content p {
     font-size: 1.2rem;
-    margin-bottom: 2rem;
+    margin-bottom: 2.5rem;
     color: #e2e8f0;
     max-width: 600px;
     margin-left: auto;
@@ -967,9 +967,9 @@ body {
 
 .cta-buttons {
     display: flex;
-    gap: 1rem;
+    gap: 1.5rem;
     justify-content: center;
-    margin-bottom: 3rem;
+    margin-bottom: 4rem;
     flex-wrap: wrap;
 }
 
@@ -980,7 +980,7 @@ body {
 .competition-highlights {
     display: flex;
     justify-content: center;
-    gap: 3rem;
+    gap: 4rem;
     flex-wrap: wrap;
 }
 
@@ -1005,26 +1005,26 @@ body {
 .contact-content {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    gap: 4rem;
+    gap: 5rem;
 }
 
 .contact-info h3,
 .contact-form h3 {
     font-size: 1.8rem;
-    margin-bottom: 2rem;
+    margin-bottom: 2.5rem;
     color: #1e293b;
 }
 
 .contact-details {
     display: grid;
-    gap: 2rem;
+    gap: 2.5rem;
 }
 
 .contact-item {
     display: flex;
     align-items: flex-start;
-    gap: 1rem;
-    padding: 1.5rem;
+    gap: 1.5rem;
+    padding: 2rem;
     background: #f8fafc;
     border-radius: 12px;
     border-left: 4px solid #1e40af;
@@ -1052,7 +1052,7 @@ body {
 }
 
 .form-group {
-    margin-bottom: 1.5rem;
+    margin-bottom: 2rem;
 }
 
 .form-group input,
@@ -1094,8 +1094,8 @@ body {
 .footer-content {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-    gap: 2rem;
-    margin-bottom: 2rem;
+    gap: 2.5rem;
+    margin-bottom: 2.5rem;
 }
 
 .footer-logo {
