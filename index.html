@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="format-detection" content="telephone=no">
-    <title>iDENTify - Stop Dental Emergencies Before They Start</title>
+    <title>iDENTify - Stop Emergency Dental Appointments Before They Start</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -24,6 +24,8 @@
                 <li><a href="#problem">Problem</a></li>
                 <li><a href="#solution">Solution</a></li>
                 <li><a href="#how-it-works">How It Works</a></li>
+                <li><a href="#impact">Impact</a></li>
+                <li><a href="team.html">Team</a></li>
                 <li><a href="#contact">Contact</a></li>
             </ul>
             <button class="mobile-menu-toggle" aria-label="Toggle mobile menu" aria-expanded="false" aria-controls="mobileMenu">
@@ -50,207 +52,350 @@
             <li><a href="#problem">Problem</a></li>
             <li><a href="#solution">Solution</a></li>
             <li><a href="#how-it-works">How It Works</a></li>
+            <li><a href="#impact">Impact</a></li>
+            <li><a href="team.html">Team</a></li>
             <li><a href="#contact">Contact</a></li>
         </ul>
     </div>
 
-    <!-- Hero Section -->
-    <section id="hero" class="hero">
-        <div class="hero-content">
-            <div class="hero-text">
-                <h1>It's 2 AM. Your Tooth is Throbbing. Your Dentist Won't Answer.</h1>
-                <h2>Emergency dental appointments are breaking the system—disrupting clinic schedules, overwhelming dentists, and leaving patients in pain with nowhere to turn.</h2>
-                <p>Every night, thousands of patients frantically text their dentists about sudden toothaches. Every day, dentists struggle to fit emergency appointments into packed schedules. This broken system hurts everyone.</p>
-                
-                <div class="hero-stats">
-                    <div class="stat">
-                        <span class="stat-number" data-target="1000">0</span><span class="stat-unit">+</span>
-                        <span class="stat-label">Emergency Texts Sent Nightly</span>
-                    </div>
-                    <div class="stat">
-                        <span class="stat-number" data-target="100">0</span><span class="stat-unit">%</span>
-                        <span class="stat-label">Clinic Schedules Disrupted Daily</span>
+    <!-- Hero Section with Chat Transition -->
+    <section id="hero" class="hero-section" role="region" aria-label="Hero section">
+        <!-- Chat Messages View -->
+        <div class="hero-chat-view">
+            <div class="chat-fade-overlay"></div>
+            <div class="chat-container">
+                <div class="chat-header">
+                    <div class="chat-time">2:08 AM</div>
+                    <div class="chat-status-icons">
+                        <i class="fas fa-signal" aria-hidden="true"></i>
+                        <i class="fas fa-wifi" aria-hidden="true"></i>
+                        <i class="fas fa-battery-three-quarters" aria-hidden="true"></i>
                     </div>
                 </div>
-
-                <div class="hero-buttons">
-                    <button class="btn btn-primary" onclick="launchDemo()">
-                        <span>Try the Demo</span>
-                        <i class="fas fa-rocket"></i>
-                    </button>
-                    <a href="#solution" class="btn btn-secondary">
-                        <span>Learn More</span>
-                        <i class="fas fa-arrow-down"></i>
-                    </a>
+                <div class="chat-messages" role="log" aria-live="polite">
+                    <div class="message patient message-1" data-delay="0">
+                        Hey doc… are you awake?
+                    </div>
+                    <div class="message patient message-2" data-delay="2000">
+                        This is urgent. I can't bear this pain.
+                    </div>
+                    <div class="typing-indicator" aria-label="Typing">
+                        <span class="typing-dot"></span>
+                        <span class="typing-dot"></span>
+                        <span class="typing-dot"></span>
+                    </div>
+                    <div class="delivered-status">Delivered</div>
+                    <div class="time-transition">8:12 AM</div>
+                    <div class="message doctor message-3" data-delay="9000">
+                        Just saw this. You need to come in ASAP.
+                    </div>
+                    <div class="message doctor message-4" data-delay="10500">
+                        That infection got worse overnight.
+                    </div>
+                </div>
+                <div class="chat-scroll-hint" aria-label="Scroll down">
+                    <i class="fas fa-chevron-down"></i>
                 </div>
             </div>
-            
-            <div class="hero-visual">
-                <div class="phone-simple">
-                    <div class="phone-screen">
-                        <div class="scan-interface">
-                            <div class="scan-icon">
-                                <i class="fas fa-tooth"></i>
-                            </div>
-                            <div class="scan-text">Ready to Scan</div>
-                            <button class="scan-button" onclick="simulateScan()">
-                                <i class="fas fa-camera"></i> Scan
-                            </button>
+        </div>
+
+        <!-- Hero Content View -->
+        <div class="hero-content-view">
+            <div class="hero-content-wrapper">
+                <!-- Chat Snapshot (Left Side) -->
+                <div class="chat-snapshot">
+                    <div class="chat-snapshot-header">
+                        <div class="chat-snapshot-time">8:12 AM</div>
+                        <div class="chat-snapshot-status">
+                            <i class="fas fa-signal" aria-hidden="true"></i>
+                            <i class="fas fa-wifi" aria-hidden="true"></i>
+                            <i class="fas fa-battery-three-quarters" aria-hidden="true"></i>
                         </div>
                     </div>
+                    <div class="chat-snapshot-messages">
+                        <div class="chat-snapshot-message chat-snapshot-patient">
+                            Hey doc… are you awake?
+                        </div>
+                        <div class="chat-snapshot-message chat-snapshot-patient">
+                            This is urgent. I can't bear this pain.
+                        </div>
+                        <div class="chat-snapshot-message chat-snapshot-doctor">
+                            Just saw this. You need to come in ASAP.
+                        </div>
+                        <div class="chat-snapshot-message chat-snapshot-doctor">
+                            That infection got worse overnight.
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Hero Content (Right Side) -->
+                <div class="hero-reveal-container">
+                    <h1 id="hero-reveal-title" class="hero-reveal-headline">This is why we built iDENTify.</h1>
+                    <h2 class="hero-reveal-subheadline">Your AI-powered oral health monitoring tool—designed to detect problems early and prevent late-night emergencies.</h2>
+                    <p class="hero-reveal-body">Patients gain peace of mind from instant guidance. Dentists reduce emergency texts and stabilize their schedules. Everyone benefits from early detection.</p>
+                    <a href="#how-it-works" class="hero-reveal-cta btn btn-primary">See How It Works</a>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Problem Section -->
-    <section id="problem" class="section">
+    <!-- Chat Transition Section -->
+    <section class="chat-transition fade-in slide-up" role="region" aria-labelledby="transition-title" style="display: none;">
         <div class="container">
-            <h2 class="section-title">The Emergency Appointment Crisis</h2>
-            <div class="problem-grid">
-                <div class="problem-card">
-                    <div class="card-icon">
-                        <i class="fas fa-comment-dots"></i>
+            <h2 id="transition-title" class="section-title">This happens every night.</h2>
+            <p class="transition-subtext">Nighttime messages. Disrupted schedules. Patient suffering. The system is broken.</p>
+        </div>
+    </section>
+
+    <!-- Problem Section -->
+    <section id="problem" class="section problem-section" role="region" aria-labelledby="problem-title">
+        <div class="container">
+            <h2 id="problem-title" class="section-title fade-in">The Problem</h2>
+            <div class="story-beats">
+                <div class="story-beat fade-in slide-up" data-story-beat="1" data-delay="0">
+                    <div class="card-icon problem-icon">
+                        <i class="fas fa-calendar-times" aria-hidden="true"></i>
                     </div>
-                    <h3>For Patients</h3>
-                    <p>After surgery, your only guidance is texting a busy dentist. Most patients ignore early warning signs until it's too late—resulting in painful emergencies and expensive treatments.</p>
+                    <h3>The Ripple Effect</h3>
+                    <p>Every ignored symptom becomes a painful emergency. Every emergency derails a clinic.</p>
                 </div>
-                <div class="problem-card">
-                    <div class="card-icon">
-                        <i class="fas fa-calendar-times"></i>
-                    </div>
-                    <h3>For Dentists</h3>
-                    <p>Individually messaging thousands of patients is impossible. Emergency appointments disrupt your meticulous schedule, forcing you to squeeze in urgent cases while other patients wait.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Mirrored Stories Section -->
+    <section id="mirrored-stories" class="section mirrored-section" role="region" aria-labelledby="mirrored-title">
+        <div class="container">
+            <h2 id="mirrored-title" class="section-title fade-in">Two Sides, One Broken System</h2>
+            <div class="mirrored-content">
+                <div class="mirrored-column mirrored-column-left fade-in slide-left">
+                    <div class="mirrored-emoji anxious-pulse" role="img" aria-label="Anxious patient">😣</div>
+                    <p>"I'm scared. Is this serious?"</p>
                 </div>
-                <div class="problem-card">
-                    <div class="card-icon">
-                        <i class="fas fa-clock"></i>
-                    </div>
-                    <h3>The Late-Night Reality</h3>
-                    <p>Patients frantically text at 2 AM about sudden toothaches. Dentists can't respond to everyone. The system is broken for both sides.</p>
+                <div class="center-divider fade-in">
+                    <div class="divider-line"></div>
+                    <p>This system fails both sides.</p>
+                </div>
+                <div class="mirrored-column mirrored-column-right fade-in slide-right">
+                    <div class="mirrored-emoji" role="img" aria-label="Overwhelmed dentist">😵‍💫</div>
+                    <p>"I have 17 unread emergency texts."</p>
+                    <i class="fas fa-inbox inbox-overflow" aria-hidden="true"></i>
                 </div>
             </div>
         </div>
     </section>
 
     <!-- Solution Section -->
-    <section id="solution" class="section">
-        <div class="container">
-            <h2 class="section-title">Our Solution: Peace of Mind in Your Pocket</h2>
-            <div class="solution-content">
-                <p class="solution-intro">iDENTify is a smartphone app that works with a 3D-printed attachment to let patients take clear intra-oral scans at home. Our machine learning model analyzes these scans to detect early signs of caries, gingivitis, and periodontitis—catching problems before they become emergencies.</p>
-                
-                <div class="solution-benefits">
-                    <div class="benefit-card">
-                        <h3>For Patients</h3>
-                        <p>Get accessible feedback anytime. Catch issues early. Stop worrying about whether that tooth pain is serious.</p>
+    <section id="solution" class="section solution-section" role="region" aria-labelledby="solution-title">
+        <div class="dark-to-light-transition">
+            <div class="container">
+                <p class="solution-intro fade-in">What if that late-night panic could have been prevented? What if early detection was as simple as scanning from your phone?</p>
+                <h2 id="solution-title" class="section-title fade-in">iDENTify: Early Detection From Your Phone</h2>
+                <p class="solution-subheadline fade-in">A smartphone app + 3D-printed attachment that captures clear intra-oral scans and uses machine learning to detect early dental complications.</p>
+                <div class="solution-content">
+                    <div class="solution-visual-container fade-in">
+                        <div class="solution-animation-sequence futuristic-reveal solution-reveal">
+                            <div class="phone-mockup-solution">
+                                <div class="phone-attachment-solution"></div>
+                                <div class="phone-screen-solution">
+                                    <div class="scan-status-label">Ready to Scan</div>
+                                    <div class="camera-flash"></div>
+                                    <div class="scan-image-reveal"></div>
+                                    <div class="heatmap-visualization">
+                                        <div class="heatmap-red"></div>
+                                        <div class="heatmap-yellow"></div>
+                                        <div class="heatmap-green"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
-                    <div class="benefit-card">
-                        <h3>For Dentists</h3>
-                        <p>Reduce emergency appointments. Monitor patients remotely. Focus on scheduled care instead of crisis management.</p>
-                    </div>
-                    <div class="benefit-card">
-                        <h3>The Result</h3>
-                        <p>Fewer emergency appointments. Less stress for everyone. Better oral health outcomes.</p>
+                    
+                    <div class="solution-benefits">
+                        <div class="benefit-card solution-card fade-in slide-up" data-reveal-sequence="0" data-delay="0">
+                            <div class="card-icon solution-icon">
+                                <i class="fas fa-camera"></i>
+                            </div>
+                            <h3>High-Quality Scans</h3>
+                            <p>Take clear intra-oral scans using your smartphone with our 3D-printed attachment.</p>
+                        </div>
+                        <div class="benefit-card solution-card fade-in slide-up" data-reveal-sequence="1" data-delay="200">
+                            <div class="card-icon solution-icon">
+                                <i class="fas fa-brain"></i>
+                            </div>
+                            <h3>AI Detection</h3>
+                            <p>Our machine learning model detects early signs of caries, gingivitis, and periodontitis with 95% accuracy.</p>
+                        </div>
+                        <div class="benefit-card solution-card fade-in slide-up" data-reveal-sequence="2" data-delay="400">
+                            <div class="card-icon solution-icon">
+                                <i class="fas fa-chart-line"></i>
+                            </div>
+                            <h3>Complication Prediction</h3>
+                            <p>Predict problems that would have resulted in disrupting emergency appointments.</p>
+                        </div>
+                        <div class="benefit-card solution-card fade-in slide-up" data-reveal-sequence="3" data-delay="600">
+                            <div class="card-icon solution-icon">
+                                <i class="fas fa-heart"></i>
+                            </div>
+                            <h3>Peace of Mind</h3>
+                            <p>Accessible feedback for patients. Reduced emergency appointments for dentists. Better outcomes for everyone.</p>
+                        </div>
                     </div>
                 </div>
-                
-                <p class="solution-tech">Our AI model is trained on extensive dental imaging data to provide reliable early detection. Validated with 95% accuracy in beta testing.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Transformation Section -->
+    <section id="transformation" class="section transformation-section" role="region" aria-labelledby="transformation-title">
+        <div class="container">
+            <h2 id="transformation-title" class="section-title fade-in">The Transformation</h2>
+            <div class="transformation-sequence">
+                <div class="transformation-state before-state" data-transformation-state="before">
+                    <div class="transformation-icon">
+                        <i class="fas fa-tooth pain-icon" aria-hidden="true"></i>
+                    </div>
+                    <div class="transformation-message emergency-message">
+                        <p>"My tooth is killing me! Can you see me today?"</p>
+                    </div>
+                    <div class="transformation-icon">
+                        <i class="fas fa-user-md" aria-hidden="true"></i>
+                    </div>
+                    <p class="transformation-label">BEFORE: Panic & Emergency</p>
+                </div>
+                <div class="transformation-state transition-state" data-transformation-state="transition">
+                    <div class="transition-line"></div>
+                    <div class="phone-attachment-transition">
+                        <div class="phone-simple-transition">
+                            <div class="phone-attachment"></div>
+                        </div>
+                    </div>
+                    <div class="ai-scan-light"></div>
+                    <p class="transformation-label">TRANSITION: Early Detection</p>
+                </div>
+                <div class="transformation-state after-state" data-transformation-state="after">
+                    <div class="transformation-message success-message">
+                        <p>"Early gingivitis spotted. No urgent care needed."</p>
+                    </div>
+                    <div class="transformation-icon">
+                        <i class="fas fa-check-circle" aria-hidden="true"></i>
+                    </div>
+                    <div class="inbox-counter">
+                        <i class="fas fa-inbox" aria-hidden="true"></i>
+                        <span class="counter-value" data-target="3">17</span>
+                        <span class="counter-label">unread messages</span>
+                    </div>
+                    <p class="transformation-label">AFTER: Clarity & Stability</p>
+                </div>
+            </div>
+            <div class="transformation-text fade-in">
+                <p>Panic → Clarity. Disruption → Stability. Fear → Peace of mind.</p>
             </div>
         </div>
     </section>
 
     <!-- How It Works Section -->
-    <section id="how-it-works" class="section">
+    <section id="how-it-works" class="section" role="region" aria-labelledby="how-it-works-title">
         <div class="container">
-            <h2 class="section-title">How It Works</h2>
-            <div class="technology-demo-grid">
-                <div class="technology-text">
-                    <div class="how-it-works-steps">
-                        <div class="step">
-                            <h3>Step 1: Attach the Adapter</h3>
-                            <p>Attach the 3D-printed smartphone adapter to your phone</p>
-                        </div>
-                        <div class="step">
-                            <h3>Step 2: Take Scans</h3>
-                            <p>Take clear intra-oral scans following the app's guidance</p>
-                        </div>
-                        <div class="step">
-                            <h3>Step 3: Get AI Analysis</h3>
-                            <p>Get instant AI analysis detecting early signs of oral diseases</p>
-                        </div>
+            <h2 id="how-it-works-title" class="section-title fade-in">How It Works</h2>
+            <div class="how-it-works-steps">
+                <div class="step fade-in slide-up" data-delay="0">
+                    <div class="step-number">1</div>
+                    <div class="step-icon-container step-icon-animate">
+                        <i class="fas fa-puzzle-piece"></i>
+                    </div>
+                    <h3>Attach the 3D-printed lens</h3>
+                    <p>Simple snap-on design for instant setup.</p>
+                </div>
+                <div class="step fade-in slide-up" data-delay="200">
+                    <div class="step-number">2</div>
+                    <div class="step-icon-container step-icon-animate">
+                        <i class="fas fa-camera-retro"></i>
+                    </div>
+                    <h3>Scan inside your mouth</h3>
+                    <p>Follow the app's guidance for clear intra-oral scans.</p>
+                </div>
+                <div class="step fade-in slide-up" data-delay="400">
+                    <div class="step-number">3</div>
+                    <div class="step-icon-container step-icon-animate">
+                        <i class="fas fa-cloud-upload-alt"></i>
+                    </div>
+                    <h3>Upload instantly</h3>
+                    <p>Your scan is securely uploaded for immediate analysis.</p>
+                </div>
+                <div class="step fade-in slide-up" data-delay="600">
+                    <div class="step-number">4</div>
+                    <div class="step-icon-container step-icon-animate">
+                        <i class="fas fa-brain"></i>
+                    </div>
+                    <h3>AI analyzes for complications</h3>
+                    <p>Machine learning detects early signs of oral diseases with 95% accuracy.</p>
+                </div>
+                <div class="step fade-in slide-up" data-delay="800">
+                    <div class="step-number">5</div>
+                    <div class="step-icon-container step-icon-animate">
+                        <i class="fas fa-bolt"></i>
+                    </div>
+                    <h3>Receive guidance instantly</h3>
+                    <p>Get personalized recommendations and peace of mind.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Impact Metrics Section -->
+    <section id="impact" class="section impact-section" role="region" aria-labelledby="impact-title">
+        <div class="container">
+            <h2 id="impact-title" class="section-title fade-in">Real Impact on Emergency Care</h2>
+            <div class="impact-metrics">
+                <div class="impact-card fade-in slide-up" data-delay="0">
+                    <div class="impact-icon">
+                        <i class="fas fa-shield-alt"></i>
+                    </div>
+                    <div class="impact-number" data-target="95">0</div>
+                    <div class="impact-unit">%</div>
+                    <h3>Early Detection</h3>
+                    <p>Reduces emergency appointments through early detection.</p>
+                    <div class="progress-bar">
+                        <div class="progress-fill" data-target="95"></div>
                     </div>
                 </div>
-                <div class="tech-demo-container">
-                    <div class="demo-interface">
-                        <div class="demo-phone">
-                            <div class="phone-frame">
-                                <div class="phone-screen">
-                                    <div class="scanner-interface">
-                                        <div class="scanner-header">
-                                            <h4>iDENTify Scanner</h4>
-                                            <div class="status">Ready</div>
-                                        </div>
-                                        
-                                        <div class="viewfinder">
-                                            <div class="scan-target">
-                                                <i class="fas fa-tooth"></i>
-                                            </div>
-                                        </div>
-                                        
-                                        <div class="scanner-controls">
-                                            <button class="scan-btn" onclick="showDemoInfo()">
-                                                <i class="fas fa-play"></i> View Demo
-                                            </button>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        
-                        <div class="demo-results" id="demoResults">
-                            <div class="results-header">
-                                <h4>Demo Preview</h4>
-                                <p>Experience iDENTify's AI-powered dental scanning technology</p>
-                            </div>
-                            <div class="results-content" id="resultsContent">
-                                <div class="scan-result">
-                                    <div class="health-status healthy">
-                                        <strong>Demo Available</strong><br>
-                                        Watch our comprehensive demo video to see iDENTify in action
-                                    </div>
-                                    <div class="mt-16">
-                                        <div class="result-item">
-                                            <span class="result-label">AI Accuracy</span>
-                                            <span class="result-value">95%</span>
-                                        </div>
-                                        <div class="result-item">
-                                            <span class="result-label">Scan Time</span>
-                                            <span class="result-value">30 seconds</span>
-                                        </div>
-                                        <div class="result-item">
-                                            <span class="result-label">Detection Range</span>
-                                            <span class="result-value">15+ conditions</span>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+                <div class="impact-card fade-in slide-up" data-delay="200">
+                    <div class="impact-icon">
+                        <i class="fas fa-inbox"></i>
+                    </div>
+                    <div class="impact-number" data-target="55">0</div>
+                    <div class="impact-unit">%</div>
+                    <h3>Reduced Message Load</h3>
+                    <p>Decreases dentist message load by 40–70%.</p>
+                    <div class="progress-bar">
+                        <div class="progress-fill" data-target="55"></div>
+                    </div>
+                </div>
+                <div class="impact-card fade-in slide-up" data-delay="400">
+                    <div class="impact-icon">
+                        <i class="fas fa-chart-line"></i>
+                    </div>
+                    <div class="impact-number" data-target="80">0</div>
+                    <div class="impact-unit">%</div>
+                    <h3>Better Outcomes</h3>
+                    <p>Improves patient outcomes through early intervention.</p>
+                    <div class="progress-bar">
+                        <div class="progress-fill" data-target="80"></div>
                     </div>
                 </div>
             </div>
         </div>
     </section>
 
-
     <!-- Contact Section -->
     <section id="contact" class="section">
         <div class="container">
-            <h2 class="section-title">Get in Touch</h2>
+            <h2 class="section-title fade-in">Get in Touch</h2>
             <div class="contact-content">
-                <div class="contact-info">
+                <div class="contact-info fade-in slide-left">
                     <h3>Want to learn more?</h3>
-                    <p>Want to learn more about iDENTify? Interested in joining our beta program? Have questions about how we're solving the emergency appointment crisis? We'd love to hear from you.</p>
+                    <p>Interested in our beta program or learning more about how we're solving the emergency appointment crisis? We'd love to hear from you.</p>
                     
                     <div class="contact-details">
                         <div class="contact-detail">
@@ -264,7 +409,7 @@
                     </div>
                 </div>
                 
-                <div class="contact-form">
+                <div class="contact-form fade-in slide-right">
                     <form id="contactForm">
                         <div class="form-group">
                             <label for="name">Name</label>
@@ -290,19 +435,18 @@
     </section>
 
     <!-- Footer -->
-    <footer class="footer">
+    <footer class="footer minimal-footer">
         <div class="footer-content">
-            <h3>iDENTify</h3>
-            <p>Transforming dental health through AI innovation</p>
             <div class="footer-links">
                 <a href="#hero">Home</a>
+                <span class="footer-separator">|</span>
                 <a href="#problem">Problem</a>
+                <span class="footer-separator">|</span>
                 <a href="#solution">Solution</a>
-                <a href="#how-it-works">How It Works</a>
+                <span class="footer-separator">|</span>
+                <a href="team.html">Team</a>
+                <span class="footer-separator">|</span>
                 <a href="#contact">Contact</a>
-            </div>
-            <div class="footer-bottom">
-                <p>&copy; 2025 iDENTify. All rights reserved.</p>
             </div>
         </div>
     </footer>

@@ -23,16 +23,16 @@ const server = http.createServer((req, res) => {
   const parsedUrl = url.parse(req.url, true);
   let pathname = parsedUrl.pathname;
 
-  // Maintenance mode: redirect all routes except maintenance.html itself
-  if (pathname !== '/maintenance.html' && pathname !== '/favicon.ico') {
-    res.writeHead(307, { 'Location': '/maintenance.html' });
-    res.end();
-    return;
+  // Serve index.html at root
+  if (pathname === '/') {
+    pathname = '/index.html';
   }
 
-  // Serve maintenance.html
-  if (pathname === '/maintenance.html' || pathname === '/') {
-    pathname = '/maintenance.html';
+  // Map extension-less routes to their .html files
+  if (pathname === '/team') {
+    pathname = '/team.html';
+  } else if (pathname === '/contact') {
+    pathname = '/contact.html';
   }
 
   // Remove leading slash for file system
@@ -59,8 +59,7 @@ const server = http.createServer((req, res) => {
 
 server.listen(PORT, () => {
   console.log(`\n🚀 Server running at http://localhost:${PORT}`);
-  console.log(`📋 Maintenance mode is ACTIVE`);
-  console.log(`   All routes will redirect to /maintenance.html\n`);
-  console.log(`   To disable maintenance mode, stop this server\n`);
+  console.log(`✅ Site is LIVE`);
+  console.log(`   Serving index.html, team.html, and all assets\n`);
 });
 

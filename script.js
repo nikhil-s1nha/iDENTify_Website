@@ -162,9 +162,9 @@ function smoothScrollToSection(targetId) {
     }
 }
 
-// Mobile-optimized number animation with requestIdleCallback
+// Enhanced number animation with easing
 function animateNumbers(root = document) {
-    const numberElements = root.querySelectorAll('.stat-number, .market-size, .metric-value, .revenue-amount');
+    const numberElements = root.querySelectorAll('.stat-number, .market-size, .metric-value, .revenue-amount, .impact-number');
     
     numberElements.forEach(numberEl => {
         // Check if already animated to prevent re-animation
@@ -172,16 +172,37 @@ function animateNumbers(root = document) {
         numberEl.dataset.animated = 'true';
         
         const target = parseFloat(numberEl.dataset.target);
-        const unit = numberEl.nextElementSibling?.textContent.trim() || '';
+        if (isNaN(target)) return;
+        
+        // Safely detect unit from sibling element
+        const sibling = numberEl.nextElementSibling;
+        let unit = '';
+        if (sibling) {
+            if (sibling.classList.contains('impact-unit')) {
+                unit = '%';
+            } else {
+                const siblingText = sibling.textContent.trim();
+                if (siblingText) {
+                    unit = siblingText;
+                }
+            }
+        }
         
         // Detect mobile device for faster animations
         const isMobile = window.innerWidth <= 768;
         const duration = isMobile ? 1000 : 2000;
         const startTime = performance.now();
+        
+        // Easing function for smooth deceleration
+        function easeOutCubic(t) {
+            return 1 - Math.pow(1 - t, 3);
+        }
 
         function tick(now) {
-            const progress = Math.min((now - startTime) / duration, 1);
-            const value = target * progress;
+            const elapsed = now - startTime;
+            const progress = Math.min(elapsed / duration, 1);
+            const easedProgress = easeOutCubic(progress);
+            const value = target * easedProgress;
             
             // Handle different number formats
             if (unit === 'M') {
@@ -208,6 +229,15 @@ function animateNumbers(root = document) {
             if (progress < 1) {
                 // Use requestAnimationFrame for consistent frame rate
                 requestAnimationFrame(tick);
+            } else {
+                // Ensure final value is exact
+                if (unit === '%') {
+                    numberEl.textContent = Math.floor(target);
+                } else if (Number.isInteger(target)) {
+                    numberEl.textContent = Math.floor(target);
+                } else {
+                    numberEl.textContent = target.toFixed(1);
+                }
             }
         }
 
@@ -217,57 +247,588 @@ function animateNumbers(root = document) {
 }
 
 
-// Simplified demo functionality for mobile performance
-function showDemoInfo() {
-    // Show a simple modal or redirect to demo video
-    const resultsContent = document.getElementById('resultsContent');
+// Phone Animation Sequence (Hero section)
+function triggerPhoneAnimation() {
+    const phoneAttachment = document.querySelector('.phone-attachment');
+    const phoneScreen = document.querySelector('.phone-screen');
+    const scanResultOverlay = document.querySelector('.scan-result-overlay');
+    const heatmapOverlay = document.querySelector('.heatmap-overlay');
     
-    if (resultsContent) {
-        resultsContent.innerHTML = `
-            <div class="scan-result">
-                <div class="health-status healthy">
-                    <strong>Demo Video Available</strong><br>
-                    Watch our comprehensive product demonstration
-                </div>
-                <div class="mt-16">
-                    <div class="result-item">
-                        <span class="result-label">Video Length</span>
-                        <span class="result-value">3:45 min</span>
-                    </div>
-                    <div class="result-item">
-                        <span class="result-label">Features Shown</span>
-                        <span class="result-value">Full Demo</span>
-                    </div>
-                    <div class="result-item">
-                        <span class="result-label">Contact for Demo</span>
-                        <span class="result-value">Available</span>
-                    </div>
-                </div>
-                <div class="mt-24 text-center">
-                    <button class="btn btn-primary w-100" onclick="launchDemo()">
-                        <i class="fas fa-play"></i> Watch Full Demo
-                    </button>
-                </div>
-            </div>
-        `;
+    if (!phoneAttachment || !phoneScreen) return;
+    
+    // Phase 1: Attachment snaps on
+    phoneAttachment.classList.add('attachment-snap');
+    
+    setTimeout(() => {
+        // Phase 2: Camera flash
+        const flash = phoneScreen.querySelector('.camera-flash') || document.createElement('div');
+        flash.classList.add('camera-flash', 'flash');
+        if (!phoneScreen.querySelector('.camera-flash')) {
+            phoneScreen.appendChild(flash);
+        }
+        
+        setTimeout(() => {
+            flash.classList.remove('flash');
+            
+            // Phase 3: Scan reveal
+            if (scanResultOverlay) {
+                scanResultOverlay.classList.add('scan-reveal');
+            }
+            
+            setTimeout(() => {
+                // Phase 4: Heatmap transition (red -> yellow -> green)
+                if (heatmapOverlay) {
+                    heatmapOverlay.classList.add('heatmap-red');
+                    
+                    setTimeout(() => {
+                        heatmapOverlay.classList.remove('heatmap-red');
+                        heatmapOverlay.classList.add('heatmap-yellow');
+                        
+                        setTimeout(() => {
+                            heatmapOverlay.classList.remove('heatmap-yellow');
+                            heatmapOverlay.classList.add('heatmap-green');
+                        }, 500);
+                    }, 500);
+                }
+            }, 500);
+        }, 300);
+    }, 800);
+}
+
+// Chat Animation Sequencing
+function triggerChatSequence() {
+    const heroSection = document.querySelector('.hero-section');
+    if (!heroSection || heroSection.dataset.chatAnimated) return;
+    
+    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    
+    // Mark as animated to prevent re-triggering
+    heroSection.dataset.chatAnimated = 'true';
+    
+    const chatView = heroSection.querySelector('.hero-chat-view');
+    if (!chatView) return;
+    
+    if (prefersReducedMotion) {
+        // Set time directly to 8:12 AM
+        const chatTime = chatView.querySelector('.chat-time');
+        if (chatTime) {
+            chatTime.textContent = '8:12 AM';
+        }
+        
+        // Show patient and doctor messages, hide typing indicator
+        const messages = chatView.querySelectorAll('.message, .delivered-status, .time-transition');
+        messages.forEach(msg => msg.classList.add('visible'));
+        
+        // Hide typing indicator
+        const typingIndicator = chatView.querySelector('.typing-indicator');
+        if (typingIndicator) {
+            typingIndicator.style.display = 'none';
+        }
+        
+        // Trigger transition to hero content immediately
+        setTimeout(() => {
+            triggerHeroTransition();
+        }, 100);
+        return;
+    }
+    
+    const message1 = chatView.querySelector('.message-1');
+    const message2 = chatView.querySelector('.message-2');
+    const typingIndicator = chatView.querySelector('.typing-indicator');
+    const deliveredStatus = chatView.querySelector('.delivered-status');
+    const timeTransition = chatView.querySelector('.time-transition');
+    const message3 = chatView.querySelector('.message-3');
+    const message4 = chatView.querySelector('.message-4');
+    const chatTime = chatView.querySelector('.chat-time');
+    const chatMessages = chatView.querySelector('.chat-messages');
+    const fadeOverlay = chatView.querySelector('.chat-fade-overlay');
+    
+    // Message 1 (patient): Fade in immediately
+    if (message1) {
+        message1.classList.add('visible');
+        scrollChatToBottom(chatMessages);
+    }
+    
+    // Message 2 (patient): Fade in after 2000ms
+    setTimeout(() => {
+        if (message2) {
+            message2.classList.add('visible');
+            scrollChatToBottom(chatMessages);
+        }
+    }, 2000);
+    
+    // Typing indicator: Show after 3500ms, hide after 2000ms (5500ms total)
+    setTimeout(() => {
+        showTypingIndicator(typingIndicator);
+        scrollChatToBottom(chatMessages);
+        
+        setTimeout(() => {
+            hideTypingIndicator(typingIndicator);
+        }, 2000);
+    }, 3500);
+    
+    // Delivered status: Show after 5500ms
+    setTimeout(() => {
+        if (deliveredStatus) {
+            deliveredStatus.classList.add('visible');
+        }
+    }, 5500);
+    
+    // Time transition: Animate after 7000ms (fade 2:08 AM → 8:12 AM)
+    setTimeout(() => {
+        // Fade overlay in
+        if (fadeOverlay) {
+            fadeOverlay.classList.add('active');
+        }
+        
+        // After fade in, animate time transition
+        setTimeout(() => {
+            animateTimeTransition(chatTime, timeTransition);
+            
+            // Fade overlay out
+            setTimeout(() => {
+                if (fadeOverlay) {
+                    fadeOverlay.classList.remove('active');
+                }
+            }, 400);
+        }, 400);
+    }, 7000);
+    
+    // Message 3 (doctor): Fade in after 9000ms
+    setTimeout(() => {
+        if (message3) {
+            message3.classList.add('visible');
+            scrollChatToBottom(chatMessages);
+        }
+    }, 9000);
+    
+    // Message 4 (doctor): Fade in after 10500ms
+    setTimeout(() => {
+        if (message4) {
+            message4.classList.add('visible');
+            scrollChatToBottom(chatMessages);
+        }
+        
+        // Trigger transition to hero content after 2 seconds (12500ms total)
+        setTimeout(() => {
+            triggerHeroTransition();
+        }, 2000);
+    }, 10500);
+}
+
+// Transition from chat view to hero content view
+function triggerHeroTransition() {
+    const heroSection = document.querySelector('.hero-section');
+    if (!heroSection) return;
+    
+    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    const chatView = heroSection.querySelector('.hero-chat-view');
+    const fadeOverlay = chatView?.querySelector('.chat-fade-overlay');
+    
+    // Activate fade overlay for subtle darkening
+    if (fadeOverlay) {
+        fadeOverlay.classList.add('active');
+    }
+    
+    if (prefersReducedMotion) {
+        // Instant transition for reduced motion
+        heroSection.classList.add('transitioned');
+        return;
+    }
+    
+    // Smooth transition: fade out chat, fade in hero content
+    heroSection.classList.add('transitioned');
+}
+
+// Typing indicator helpers
+function showTypingIndicator(typingIndicator) {
+    if (!typingIndicator) return;
+    typingIndicator.classList.add('visible');
+}
+
+function hideTypingIndicator(typingIndicator) {
+    if (!typingIndicator) return;
+    typingIndicator.classList.remove('visible');
+}
+
+// Time transition animation
+function animateTimeTransition(chatTime, timeTransition) {
+    if (!chatTime) return;
+    
+    // Fade out current time
+    chatTime.style.transition = 'opacity 0.5s ease';
+    chatTime.style.opacity = '0';
+    
+    setTimeout(() => {
+        // Change text content to "8:12 AM"
+        chatTime.textContent = '8:12 AM';
+        
+        // Fade in new time
+        chatTime.style.opacity = '1';
+        
+        // Show time transition element
+        if (timeTransition) {
+            timeTransition.classList.add('visible');
+        }
+    }, 500);
+}
+
+// Auto-scroll chat messages to bottom
+function scrollChatToBottom(chatMessages) {
+    if (!chatMessages) return;
+    
+    requestAnimationFrame(() => {
+        chatMessages.scrollTop = chatMessages.scrollHeight;
+    });
+}
+
+// Message Bubble Animation (Legacy - kept for compatibility)
+// LEGACY CODE: No longer used - legacy hero section has been replaced by chat-hero
+/*
+function triggerMessageBubble() {
+    const messageBubble = document.querySelector('.message-bubble');
+    if (!messageBubble) return;
+    
+    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if (prefersReducedMotion) {
+        messageBubble.style.opacity = '1';
+        return;
+    }
+    
+    // Fade-in with delay is handled by CSS, but we can add notification pulse
+    messageBubble.classList.add('fade-in-delayed');
+}
+*/
+
+// Story Beat Animations
+function triggerStoryBeats(element) {
+    if (!element) return;
+    
+    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    const storyBeats = element.querySelectorAll('[data-story-beat]');
+    
+    storyBeats.forEach((beat, index) => {
+        const delay = index * 200;
+        setTimeout(() => {
+            beat.classList.add('visible');
+            
+            // Animations are triggered by CSS when .visible class is added
+        }, delay);
+    });
+}
+
+// Mirrored Stories Animation
+function triggerMirroredStories(element) {
+    if (!element) return;
+    
+    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    const leftColumn = element.querySelector('.mirrored-column-left');
+    const rightColumn = element.querySelector('.mirrored-column-right');
+    const centerDivider = element.querySelector('.center-divider');
+    
+    if (leftColumn) {
+        setTimeout(() => {
+            leftColumn.classList.add('visible');
+        }, 0);
+    }
+    
+    if (rightColumn) {
+        setTimeout(() => {
+            rightColumn.classList.add('visible');
+        }, 200);
+    }
+    
+    if (centerDivider) {
+        setTimeout(() => {
+            centerDivider.classList.add('visible');
+        }, 400);
     }
 }
 
-// Launch demo function (simplified)
-function launchDemo() {
-    const target = document.querySelector('#technology') || document.getElementById('demoResults');
-    if (target) {
-        target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+// Solution section phone animation sequence
+function triggerSolutionPhoneAnimation() {
+    const phoneAttachmentSolution = document.querySelector('.phone-attachment-solution');
+    const phoneScreenSolution = document.querySelector('.phone-screen-solution');
+    const cameraFlash = phoneScreenSolution?.querySelector('.camera-flash');
+    const scanImageReveal = phoneScreenSolution?.querySelector('.scan-image-reveal');
+    const heatmapVisualization = phoneScreenSolution?.querySelector('.heatmap-visualization');
+    const scanStatusLabel = phoneScreenSolution?.querySelector('.scan-status-label');
+    const futuristicReveal = document.querySelector('.futuristic-reveal');
+    const solutionReveal = document.querySelector('.solution-reveal');
+    
+    if (!phoneAttachmentSolution || !phoneScreenSolution) return;
+    
+    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    
+    // Dark-to-light transition
+    const darkToLight = document.querySelector('.dark-to-light-transition');
+    if (darkToLight && !prefersReducedMotion) {
+        darkToLight.style.background = 'linear-gradient(180deg, var(--gradient-bg-start), var(--gradient-bg-start))';
     }
-    setTimeout(() => { showDemoInfo(); }, 300);
+    
+    // Futuristic reveal
+    if (futuristicReveal) {
+        futuristicReveal.classList.add('visible');
+    }
+    
+    if (solutionReveal) {
+        solutionReveal.classList.add('visible');
+    }
+    
+    // Reset all animation classes
+    phoneAttachmentSolution.classList.remove('attachment-snap');
+    if (cameraFlash) cameraFlash.classList.remove('flash');
+    if (scanImageReveal) scanImageReveal.classList.remove('scan-reveal');
+    if (heatmapVisualization) {
+        const heatmapRed = heatmapVisualization.querySelector('.heatmap-red');
+        const heatmapYellow = heatmapVisualization.querySelector('.heatmap-yellow');
+        const heatmapGreen = heatmapVisualization.querySelector('.heatmap-green');
+        if (heatmapRed) heatmapRed.classList.remove('active');
+        if (heatmapYellow) heatmapYellow.classList.remove('active');
+        if (heatmapGreen) heatmapGreen.classList.remove('active');
+    }
+    
+    if (prefersReducedMotion) {
+        phoneAttachmentSolution.classList.add('attachment-snap');
+        if (scanImageReveal) scanImageReveal.classList.add('scan-reveal');
+        if (scanStatusLabel) {
+            scanStatusLabel.classList.add('visible');
+        }
+        return;
+    }
+    
+    // Phase 1: Attachment snaps on
+    phoneAttachmentSolution.classList.add('attachment-snap');
+    
+    setTimeout(() => {
+        // Phase 2: Camera flash
+        if (cameraFlash) {
+            cameraFlash.classList.add('flash');
+            setTimeout(() => {
+                cameraFlash.classList.remove('flash');
+                
+                // Phase 3: Scan reveal (after flash is removed)
+                if (scanImageReveal) {
+                    scanImageReveal.classList.add('scan-reveal');
+                }
+                
+                setTimeout(() => {
+                    // Phase 4: Heatmap layers (red -> yellow -> green)
+                    if (heatmapVisualization) {
+                        const heatmapRed = heatmapVisualization.querySelector('.heatmap-red');
+                        const heatmapYellow = heatmapVisualization.querySelector('.heatmap-yellow');
+                        const heatmapGreen = heatmapVisualization.querySelector('.heatmap-green');
+                        
+                        if (heatmapRed) {
+                            heatmapRed.classList.add('active');
+                            setTimeout(() => {
+                                heatmapRed.classList.remove('active');
+                                if (heatmapYellow) {
+                                    heatmapYellow.classList.add('active');
+                                    setTimeout(() => {
+                                        heatmapYellow.classList.remove('active');
+                                        if (heatmapGreen) {
+                                            heatmapGreen.classList.add('active');
+                                            
+                                            // Emphasize "Ready to Scan" label when animation completes
+                                            if (scanStatusLabel) {
+                                                scanStatusLabel.classList.add('visible');
+                                                setTimeout(() => {
+                                                    scanStatusLabel.classList.add('pulse');
+                                                }, 200);
+                                            }
+                                        }
+                                    }, 500);
+                                }
+                            }, 500);
+                        }
+                    }
+                }, 500);
+            }, 300);
+        }
+    }, 800);
+    
+    // Stagger solution card reveals
+    const solutionCards = document.querySelectorAll('[data-reveal-sequence]');
+    solutionCards.forEach((card, index) => {
+        setTimeout(() => {
+            card.classList.add('visible');
+        }, index * 200);
+    });
 }
 
-// Simulate scan function (simplified for mobile)
+// Transformation Sequence Animation
+function triggerTransformationSequence(element) {
+    if (!element) return;
+    
+    // Check if scroll listener is already attached
+    if (element.dataset.scrollBound === 'true') {
+        return;
+    }
+    
+    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    const isMobile = window.innerWidth <= 768;
+    
+    if (prefersReducedMotion || isMobile) {
+        // Show all states immediately on mobile or reduced motion
+        const states = element.querySelectorAll('.transformation-state');
+        states.forEach(state => {
+            state.style.opacity = '1';
+        });
+        return;
+    }
+    
+    // Set flag to prevent duplicate listeners
+    element.dataset.scrollBound = 'true';
+    
+    // Track scroll progress for transformation states
+    function trackScrollProgress() {
+        const scrollY = window.scrollY;
+        const elementTop = element.offsetTop;
+        const elementHeight = element.offsetHeight;
+        const windowHeight = window.innerHeight;
+        
+        // Compute progress using bounded formula and clamp between 0 and 1
+        let progress = (scrollY - elementTop) / (elementHeight - windowHeight);
+        progress = Math.max(0, Math.min(1, progress));
+        
+        const beforeState = element.querySelector('.before-state');
+        const transitionState = element.querySelector('.transition-state');
+        const afterState = element.querySelector('.after-state');
+        
+        if (progress < 0.33) {
+            // BEFORE state
+            if (beforeState) {
+                beforeState.classList.add('before-visible');
+                beforeState.style.opacity = '1';
+            }
+            if (transitionState) transitionState.style.opacity = '0.3';
+            if (afterState) afterState.style.opacity = '0.3';
+        } else if (progress < 0.66) {
+            // TRANSITION state
+            if (beforeState) beforeState.style.opacity = '0.5';
+            if (transitionState) {
+                transitionState.classList.add('transition-visible');
+                transitionState.style.opacity = '1';
+            }
+            if (afterState) afterState.style.opacity = '0.3';
+        } else {
+            // AFTER state
+            if (beforeState) beforeState.style.opacity = '0.3';
+            if (transitionState) transitionState.style.opacity = '0.5';
+            if (afterState) {
+                afterState.classList.add('after-visible');
+                afterState.style.opacity = '1';
+            }
+            
+            // Animate inbox counter
+            const counterValue = element.querySelector('.counter-value');
+            if (counterValue && !counterValue.dataset.animated) {
+                counterValue.dataset.animated = 'true';
+                const target = parseInt(counterValue.dataset.target) || 3;
+                let current = 17;
+                const interval = setInterval(() => {
+                    current = Math.max(target, current - 1);
+                    counterValue.textContent = current;
+                    if (current <= target) {
+                        clearInterval(interval);
+                    }
+                }, 50);
+            }
+        }
+    }
+    
+    // Throttle scroll tracking
+    let scrollTimeout;
+    window.addEventListener('scroll', () => {
+        if (scrollTimeout) return;
+        scrollTimeout = requestAnimationFrame(() => {
+            trackScrollProgress();
+            scrollTimeout = null;
+        });
+    }, { passive: true });
+    
+    // Initial check
+    trackScrollProgress();
+}
+
+// Animate heatmap overlay - operates on child layers
+function animateHeatmap(element) {
+    if (!element) return;
+    
+    const heatmapRed = element.querySelector('.heatmap-red');
+    const heatmapYellow = element.querySelector('.heatmap-yellow');
+    const heatmapGreen = element.querySelector('.heatmap-green');
+    
+    if (!heatmapRed || !heatmapYellow || !heatmapGreen) return;
+    
+    // Remove active classes from all layers
+    heatmapRed.classList.remove('active');
+    heatmapYellow.classList.remove('active');
+    heatmapGreen.classList.remove('active');
+    
+    setTimeout(() => {
+        heatmapRed.classList.add('active');
+        setTimeout(() => {
+            heatmapRed.classList.remove('active');
+            heatmapYellow.classList.add('active');
+            setTimeout(() => {
+                heatmapYellow.classList.remove('active');
+                heatmapGreen.classList.add('active');
+            }, 500);
+        }, 500);
+    }, 100);
+}
+
+// Stagger elements animation
+function staggerElements(elements, delay = 200) {
+    elements.forEach((element, index) => {
+        setTimeout(() => {
+            element.classList.add('visible');
+        }, index * delay);
+    });
+}
+
+// Parallax scroll effect
+let parallaxElements = [];
+let isParallaxEnabled = true;
+
+function parallaxScroll() {
+    if (!isParallaxEnabled) return;
+    
+    const scrollY = window.pageYOffset;
+    const isMobile = window.innerWidth <= 768;
+    
+    if (isMobile) return; // Disable parallax on mobile
+    
+    parallaxElements.forEach(element => {
+        const speed = element.dataset.speed || 0.5;
+        const yPos = -(scrollY * speed);
+        element.style.transform = `translateY(${yPos}px)`;
+    });
+}
+
+// Animate progress bar
+function animateProgressBar(element, target, duration = 1500) {
+    if (!element) return;
+    
+    element.style.setProperty('--target-width', `${target}%`);
+    element.classList.add('animate');
+    
+    setTimeout(() => {
+        element.style.width = `${target}%`;
+    }, 50);
+}
+
+// Simulate scan function (enhanced with animation sequence)
 function simulateScan() {
     const scanButton = document.querySelector('.scan-button');
     const scanText = document.querySelector('.scan-text');
     
     if (!scanButton || !scanText) return;
+    
+    // Trigger full animation sequence
+    triggerPhoneAnimation();
     
     // Show scanning state
     scanButton.textContent = 'Scanning...';
@@ -276,7 +837,7 @@ function simulateScan() {
     
     // Simulate scan process with shorter duration for mobile
     const isMobile = window.innerWidth <= 768;
-    const scanDuration = isMobile ? 1500 : 2000;
+    const scanDuration = isMobile ? 2000 : 3000;
     
     setTimeout(() => {
         scanButton.textContent = 'Scan Complete!';
@@ -287,6 +848,17 @@ function simulateScan() {
             scanButton.textContent = 'Scan';
             scanButton.disabled = false;
             scanText.textContent = 'Ready to Scan';
+            
+            // Reset animation elements
+            const phoneAttachment = document.querySelector('.phone-attachment');
+            const scanResultOverlay = document.querySelector('.scan-result-overlay');
+            const heatmapOverlay = document.querySelector('.heatmap-overlay');
+            
+            if (phoneAttachment) phoneAttachment.classList.remove('attachment-snap');
+            if (scanResultOverlay) scanResultOverlay.classList.remove('scan-reveal');
+            if (heatmapOverlay) {
+                heatmapOverlay.classList.remove('heatmap-red', 'heatmap-yellow', 'heatmap-green');
+            }
         }, isMobile ? 2000 : 3000);
     }, scanDuration);
 }
@@ -412,53 +984,6 @@ document.addEventListener('DOMContentLoaded', function() {
     const contactForm = document.getElementById('contactForm');
     
     if (contactForm) {
-        // Simplified form field management
-        const interestSelect = document.getElementById('interest');
-        const investmentRangeSelect = document.getElementById('investment-range');
-        const timelineSelect = document.getElementById('timeline');
-        
-        function updateFormFields() {
-            const selectedInterest = interestSelect.value;
-            const investmentInterests = ['pre-seed-investment', 'seed-round-lead', 'strategic-investment', 'follow-on-investment'];
-            
-            if (investmentInterests.includes(selectedInterest)) {
-                // Hide "Not Applicable" options for investment interests
-                Array.from(investmentRangeSelect.options).forEach(option => {
-                    if (option.value === 'not-applicable') {
-                        option.style.display = 'none';
-                    }
-                });
-                Array.from(timelineSelect.options).forEach(option => {
-                    if (option.value === 'not-applicable') {
-                        option.style.display = 'none';
-                    }
-                });
-                
-                // If "Not Applicable" is currently selected, reset to empty
-                if (investmentRangeSelect.value === 'not-applicable') {
-                    investmentRangeSelect.value = '';
-                }
-                if (timelineSelect.value === 'not-applicable') {
-                    timelineSelect.value = '';
-                }
-            } else {
-                // Show "Not Applicable" options for non-investment interests
-                Array.from(investmentRangeSelect.options).forEach(option => {
-                    option.style.display = '';
-                });
-                Array.from(timelineSelect.options).forEach(option => {
-                    option.style.display = '';
-                });
-            }
-        }
-        
-        // Add event listener for interest changes
-        if (interestSelect) {
-            interestSelect.addEventListener('change', updateFormFields);
-            // Initialize form fields on page load
-            updateFormFields();
-        }
-        
         contactForm.addEventListener('submit', function(e) {
             e.preventDefault();
             
@@ -466,30 +991,13 @@ document.addEventListener('DOMContentLoaded', function() {
             const formData = new FormData(contactForm);
             const name = formData.get('name');
             const email = formData.get('email');
-            const company = formData.get('company');
-            const interest = formData.get('interest');
-            const investmentRange = formData.get('investment-range');
-            const timeline = formData.get('timeline');
-            const portfolioFocus = formData.get('portfolio-focus');
+            const phone = formData.get('phone');
             const message = formData.get('message');
             
-            // Enhanced validation
-            if (!name || !email || !interest || !message) {
+            // Validation - require only name, email, and message (phone is optional)
+            if (!name || !email || !message) {
                 alert('Please fill in all required fields.');
                 return;
-            }
-            
-            // Validate investment-specific fields
-            const investmentInterests = ['pre-seed-investment', 'seed-round-lead', 'strategic-investment', 'follow-on-investment'];
-            if (investmentInterests.includes(interest)) {
-                if (!investmentRange || investmentRange === '' || investmentRange === 'not-applicable') {
-                    alert('Please select a valid investment range.');
-                    return;
-                }
-                if (!timeline || timeline === '' || timeline === 'not-applicable') {
-                    alert('Please select a valid timeline.');
-                    return;
-                }
             }
             
             // Show loading state
@@ -514,11 +1022,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 console.log('Form submitted:', { 
                     name, 
                     email, 
-                    company, 
-                    interest, 
-                    investmentRange, 
-                    timeline, 
-                    portfolioFocus, 
+                    phone, 
                     message 
                 });
             }, 2000);
@@ -536,24 +1040,119 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
     
-    // Mobile-optimized Intersection Observer
+    // Enhanced Intersection Observer for scroll animations
     const observerOptions = {
         threshold: 0.1,
         rootMargin: '0px 0px -50px 0px'
     };
     
-    const observer = new IntersectionObserver((entries) => {
+    const scrollObserver = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
-                const section = entry.target;
+                const element = entry.target;
+                
+                // Add visible class for scroll animations
+                if (element.classList.contains('fade-in') || 
+                    element.classList.contains('slide-up') || 
+                    element.classList.contains('slide-left') || 
+                    element.classList.contains('slide-right')) {
+                    element.classList.add('visible');
+                }
+                
+                // Hero reveal is now part of hero-section and controlled by triggerHeroTransition()
                 
                 // Animate numbers in various sections
-                if (['tam', 'sam', 'som', 'market-segments', 'business-overview', 'unit-economics', 'financial-projections'].includes(section.id)) {
-                    animateNumbers(section);
+                if (['tam', 'sam', 'som', 'market-segments', 'business-overview', 'unit-economics', 'financial-projections', 'impact'].includes(element.id)) {
+                    animateNumbers(element);
+                    
+                    // Animate progress bars in impact section
+                    if (element.id === 'impact') {
+                        const progressBars = element.querySelectorAll('.progress-fill');
+                        progressBars.forEach(bar => {
+                            const target = parseInt(bar.dataset.target) || 0;
+                            animateProgressBar(bar, target);
+                        });
+                    }
+                }
+                
+                // Animate transformation counter
+                if (element.id === 'transformation') {
+                    const counterValue = element.querySelector('.counter-value');
+                    if (counterValue && !counterValue.dataset.animated) {
+                        // Counter animation is handled in triggerTransformationSequence
+                    }
+                }
+                
+                // Trigger chat sequence when hero section is visible
+                if (element.classList.contains('hero-section') && !element.dataset.chatAnimated) {
+                    triggerChatSequence();
+                }
+                
+                // LEGACY CODE: Legacy hero section has been replaced by chat-hero
+                // Trigger phone animation and message bubble when legacy hero section is visible
+                /*
+                if (element.id === 'hero' && element.classList.contains('hero') && !element.classList.contains('chat-hero') && !element.dataset.animated) {
+                    element.dataset.animated = 'true';
+                    triggerMessageBubble();
+                    setTimeout(() => {
+                        triggerPhoneAnimation();
+                    }, 500);
+                }
+                */
+                
+                // Trigger story beats animation when problem section is visible
+                if (element.id === 'problem' && !element.dataset.animated) {
+                    element.dataset.animated = 'true';
+                    triggerStoryBeats(element);
+                }
+                
+                // Trigger mirrored stories animation
+                if (element.id === 'mirrored-stories' && !element.dataset.animated) {
+                    element.dataset.animated = 'true';
+                    triggerMirroredStories(element);
+                }
+                
+                // Trigger Solution phone animation when solution section is visible
+                if (element.id === 'solution' && !element.dataset.animated) {
+                    element.dataset.animated = 'true';
+                    setTimeout(() => {
+                        triggerSolutionPhoneAnimation();
+                    }, 500);
+                }
+                
+                // Trigger transformation sequence
+                if (element.id === 'transformation' && !element.dataset.animated) {
+                    element.dataset.animated = 'true';
+                    triggerTransformationSequence(element);
+                }
+                
+                // Sequential step reveal for How It Works (5 steps)
+                if (element.id === 'how-it-works') {
+                    const steps = element.querySelectorAll('.step');
+                    staggerElements(Array.from(steps), 200);
+                    
+                    // Add micro-animations to step icons
+                    steps.forEach((step, index) => {
+                        setTimeout(() => {
+                            const iconContainer = step.querySelector('.step-icon-animate');
+                            if (iconContainer) {
+                                iconContainer.classList.add('visible');
+                            }
+                        }, index * 200);
+                    });
                 }
             }
         });
     }, observerOptions);
+    
+    // Observe all sections and animated elements
+    const sectionsToObserve = document.querySelectorAll('section, .fade-in, .slide-up, .slide-left, .slide-right');
+    sectionsToObserve.forEach(section => {
+        scrollObserver.observe(section);
+    });
+    
+    // Legacy observer for number animations (kept for compatibility)
+    const observer = scrollObserver;
     
     // Observe sections for animations (only if motion is not reduced)
     if (!prefersReducedMotion) {
@@ -592,10 +1191,157 @@ document.addEventListener('DOMContentLoaded', function() {
         ticking = false;
     }
     
-    window.addEventListener('scroll', () => {
+    // Auto-hide scroll hint when user scrolls
+    const chatScrollHint = document.querySelector('.chat-scroll-hint');
+    let scrollHintHidden = false;
+    
+    function handleScrollHint() {
+        if (chatScrollHint && !scrollHintHidden && window.scrollY > 100) {
+            chatScrollHint.classList.add('hidden');
+            scrollHintHidden = true;
+        }
+    }
+    
+    // Optional: Add manual trigger for hero transition (skip animation)
+    if (chatScrollHint) {
+        chatScrollHint.addEventListener('click', () => {
+            triggerHeroTransition();
+        });
+    }
+    
+    // Add click/tap anywhere on chat to skip animation and transition to hero content
+    const heroSection = document.querySelector('.hero-section');
+    if (heroSection && !heroSection.dataset.skipListenerAdded) {
+        heroSection.dataset.skipListenerAdded = 'true';
+        const chatView = heroSection.querySelector('.hero-chat-view');
+        if (chatView) {
+            chatView.addEventListener('click', (e) => {
+                // Only trigger if hero hasn't already transitioned
+                if (!heroSection.classList.contains('transitioned') &&
+                    !heroSection.dataset.chatAnimated) {
+                    // Skip the chat animation sequence and go straight to hero content
+                    heroSection.dataset.chatAnimated = 'true';
+                    
+                    // Show all messages immediately
+                    const messages = chatView.querySelectorAll('.message, .delivered-status, .time-transition');
+                    messages.forEach(msg => msg.classList.add('visible'));
+                    
+                    // Hide typing indicator
+                    const typingIndicator = chatView.querySelector('.typing-indicator');
+                    if (typingIndicator) {
+                        typingIndicator.style.display = 'none';
+                    }
+                    
+                    // Update time
+                    const chatTime = chatView.querySelector('.chat-time');
+                    if (chatTime) {
+                        chatTime.textContent = '8:12 AM';
+                    }
+                    
+                    // Trigger transition immediately
+                    setTimeout(() => {
+                        triggerHeroTransition();
+                    }, 100);
+                }
+            });
+        }
+    }
+    
+    // Hide chat when scrolling down (only if not transitioned)
+    function handleChatOnScroll() {
+        const heroSection = document.querySelector('.hero-section');
+        if (!heroSection || heroSection.classList.contains('transitioned')) return;
+        
+        const chatView = heroSection.querySelector('.hero-chat-view');
+        if (!chatView) return;
+        
+        const scrollY = window.scrollY;
+        const scrollThreshold = 100; // Hide chat after scrolling 100px down
+        
+        if (scrollY > scrollThreshold) {
+            // Hide chat view when user scrolls down
+            if (!chatView.dataset.scrollHidden) {
+                chatView.dataset.scrollHidden = 'true';
+                chatView.style.opacity = '0';
+                chatView.style.pointerEvents = 'none';
+                chatView.style.transition = 'opacity 0.5s ease';
+            }
+        } else {
+            // Show chat view when scrolling back to top
+            if (chatView.dataset.scrollHidden) {
+                delete chatView.dataset.scrollHidden;
+                chatView.style.opacity = '1';
+                chatView.style.pointerEvents = 'auto';
+            }
+        }
+    }
+    
+    // Throttled scroll handler for navbar and parallax
+    function handleScroll() {
         if (!ticking) {
-            requestAnimationFrame(updateNavbar);
+            requestAnimationFrame(() => {
+                updateNavbar();
+                parallaxScroll();
+                handleScrollHint();
+                handleChatOnScroll();
+                ticking = false;
+            });
             ticking = true;
         }
-    }, { passive: true });
+    }
+    
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    
+    // Initialize parallax elements
+    parallaxElements = Array.from(document.querySelectorAll('.parallax'));
+    
+    // Detect mobile and disable parallax
+    const isMobileDevice = window.innerWidth <= 768 || /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+    if (isMobileDevice) {
+        isParallaxEnabled = false;
+    }
+    
+    // Handle window resize with debouncing
+    let resizeTimeout;
+    function handleResize() {
+        clearTimeout(resizeTimeout);
+        resizeTimeout = setTimeout(() => {
+            const isMobile = window.innerWidth <= 768;
+            
+            isParallaxEnabled = !isMobile;
+            if (isMobile) {
+                parallaxElements.forEach(el => {
+                    el.style.transform = '';
+                });
+            }
+        }, 250);
+    }
+    
+    window.addEventListener('resize', handleResize);
+    
+    // Add click listener to phone mockup to restart animation
+    const phoneMockup = document.querySelector('.phone-simple');
+    if (phoneMockup) {
+        phoneMockup.addEventListener('click', () => {
+            triggerPhoneAnimation();
+        });
+    }
+    
+    // Add click listener to solution phone mockup to replay animation
+    const phoneMockupSolution = document.querySelector('.phone-mockup-solution');
+    if (phoneMockupSolution) {
+        phoneMockupSolution.addEventListener('click', () => {
+            const solutionSection = document.querySelector('#solution');
+            if (solutionSection) {
+                solutionSection.dataset.animated = 'false';
+            }
+            triggerSolutionPhoneAnimation();
+        });
+    }
+    
+    // Check for reduced motion preference
+    if (prefersReducedMotion) {
+        isParallaxEnabled = false;
+        document.body.classList.add('reduced-motion');
+    }
 }); 
