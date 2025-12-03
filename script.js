@@ -1229,11 +1229,12 @@ document.addEventListener('DOMContentLoaded', function() {
     let ticking = false;
     
     function updateNavbar() {
-        if (window.scrollY > 50) {
-            navbar.classList.add('scrolled');
-        } else {
-            navbar.classList.remove('scrolled');
-        }
+        // Navbar color change disabled - keeping consistent color
+        // if (window.scrollY > 50) {
+        //     navbar.classList.add('scrolled');
+        // } else {
+        //     navbar.classList.remove('scrolled');
+        // }
         ticking = false;
     }
     
