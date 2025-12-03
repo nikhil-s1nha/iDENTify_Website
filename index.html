@@ -62,75 +62,96 @@
     <section id="hero" class="hero-section" role="region" aria-label="Hero section">
         <!-- Chat Messages View -->
         <div class="hero-chat-view">
-            <div class="chat-fade-overlay"></div>
-            <div class="chat-container">
-                <div class="chat-header">
-                    <div class="chat-time">2:08 AM</div>
-                    <div class="chat-status-icons">
-                        <i class="fas fa-signal" aria-hidden="true"></i>
-                        <i class="fas fa-wifi" aria-hidden="true"></i>
-                        <i class="fas fa-battery-three-quarters" aria-hidden="true"></i>
-                    </div>
-                </div>
-                <div class="chat-messages" role="log" aria-live="polite">
-                    <div class="message patient message-1" data-delay="0">
-                        Hey doc… are you awake?
-                    </div>
-                    <div class="message patient message-2" data-delay="2000">
-                        This is urgent. I can't bear this pain.
-                    </div>
-                    <div class="typing-indicator" aria-label="Typing">
-                        <span class="typing-dot"></span>
-                        <span class="typing-dot"></span>
-                        <span class="typing-dot"></span>
-                    </div>
-                    <div class="delivered-status">Delivered</div>
-                    <div class="time-transition">8:12 AM</div>
-                    <div class="message doctor message-3" data-delay="9000">
-                        Just saw this. You need to come in ASAP.
-                    </div>
-                    <div class="message doctor message-4" data-delay="10500">
-                        That infection got worse overnight.
-                    </div>
-                </div>
-                <div class="chat-scroll-hint" aria-label="Scroll down">
-                    <i class="fas fa-chevron-down"></i>
+        <div class="chat-fade-overlay"></div>
+        <div class="chat-container">
+            <div class="chat-header">
+                <div class="chat-time">2:08 AM</div>
+                <div class="chat-status-icons">
+                    <i class="fas fa-signal" aria-hidden="true"></i>
+                    <i class="fas fa-wifi" aria-hidden="true"></i>
+                    <i class="fas fa-battery-three-quarters" aria-hidden="true"></i>
                 </div>
             </div>
+            <div class="chat-messages" role="log" aria-live="polite">
+                <div class="message patient message-1" data-delay="0">
+                    Hey doc… are you awake?
+                </div>
+                <div class="message patient message-2" data-delay="2000">
+                    This is urgent. I can't bear this pain.
+                </div>
+                <div class="typing-indicator" aria-label="Typing">
+                    <span class="typing-dot"></span>
+                    <span class="typing-dot"></span>
+                    <span class="typing-dot"></span>
+                </div>
+                <div class="delivered-status">Delivered</div>
+                <div class="time-transition">8:12 AM</div>
+                <div class="message doctor message-3" data-delay="9000">
+                    Just saw this. You need to come in ASAP.
+                </div>
+                <div class="message doctor message-4" data-delay="10500">
+                    That infection got worse overnight.
+                </div>
+            </div>
+            <div class="chat-scroll-hint" aria-label="Scroll down">
+                <i class="fas fa-chevron-down"></i>
+            </div>
+        </div>
         </div>
 
         <!-- Hero Content View -->
         <div class="hero-content-view">
             <div class="hero-content-wrapper">
                 <!-- Chat Snapshot (Left Side) -->
-                <div class="chat-snapshot">
-                    <div class="chat-snapshot-header">
-                        <div class="chat-snapshot-time">8:12 AM</div>
-                        <div class="chat-snapshot-status">
-                            <i class="fas fa-signal" aria-hidden="true"></i>
-                            <i class="fas fa-wifi" aria-hidden="true"></i>
-                            <i class="fas fa-battery-three-quarters" aria-hidden="true"></i>
+                <div class="chat-snapshot-container">
+                    <div class="chat-snapshot">
+                        <div class="chat-snapshot-header">
+                            <div class="chat-snapshot-time">8:12 AM</div>
+                            <div class="chat-snapshot-status">
+                                <i class="fas fa-signal" aria-hidden="true"></i>
+                                <i class="fas fa-wifi" aria-hidden="true"></i>
+                                <i class="fas fa-battery-three-quarters" aria-hidden="true"></i>
+                            </div>
+                        </div>
+                        <div class="chat-snapshot-messages">
+                            <div class="chat-snapshot-message chat-snapshot-patient">
+                                Hey doc… are you awake?
+                            </div>
+                            <div class="chat-snapshot-message chat-snapshot-patient">
+                                This is urgent. I can't bear this pain.
+                            </div>
+                            <div class="chat-snapshot-message chat-snapshot-doctor">
+                                Just saw this. You need to come in ASAP.
+                            </div>
+                            <div class="chat-snapshot-message chat-snapshot-doctor">
+                                That infection got worse overnight.
+                            </div>
+                            <!-- Overflow indicator showing many unread messages -->
+                            <div class="chat-snapshot-overflow">
+                                <div class="chat-snapshot-overflow-indicator">
+                                    <i class="fas fa-inbox" aria-hidden="true"></i>
+                                    <span class="chat-snapshot-overflow-count">17 unread</span>
+                                </div>
+                                <div class="chat-snapshot-overflow-messages">
+                                    <div class="chat-snapshot-overflow-dot"></div>
+                                    <div class="chat-snapshot-overflow-dot"></div>
+                                    <div class="chat-snapshot-overflow-dot"></div>
+                                    <div class="chat-snapshot-overflow-text">+14 more messages</div>
+                                </div>
+                            </div>
                         </div>
                     </div>
-                    <div class="chat-snapshot-messages">
-                        <div class="chat-snapshot-message chat-snapshot-patient">
-                            Hey doc… are you awake?
-                        </div>
-                        <div class="chat-snapshot-message chat-snapshot-patient">
-                            This is urgent. I can't bear this pain.
-                        </div>
-                        <div class="chat-snapshot-message chat-snapshot-doctor">
-                            Just saw this. You need to come in ASAP.
-                        </div>
-                        <div class="chat-snapshot-message chat-snapshot-doctor">
-                            That infection got worse overnight.
-                        </div>
-                    </div>
+                    <button class="chat-replay-btn" aria-label="Replay chat animation">
+                        <i class="fas fa-redo" aria-hidden="true"></i>
+                        <span>Replay</span>
+                    </button>
                 </div>
                 
                 <!-- Hero Content (Right Side) -->
-                <div class="hero-reveal-container">
-                    <h1 id="hero-reveal-title" class="hero-reveal-headline">This is why we built iDENTify.</h1>
+        <div class="hero-reveal-container">
+                    <h1 id="hero-reveal-title" class="hero-reveal-headline">
+                        This is why we built <span class="identify-text">iDENTify</span>.
+                    </h1>
                     <h2 class="hero-reveal-subheadline">Your AI-powered oral health monitoring tool—designed to detect problems early and prevent late-night emergencies.</h2>
                     <p class="hero-reveal-body">Patients gain peace of mind from instant guidance. Dentists reduce emergency texts and stabilize their schedules. Everyone benefits from early detection.</p>
                     <a href="#how-it-works" class="hero-reveal-cta btn btn-primary">See How It Works</a>

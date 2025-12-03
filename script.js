@@ -440,6 +440,52 @@ function triggerHeroTransition() {
     heroSection.classList.add('transitioned');
 }
 
+// Reset and replay the chat sequence
+function replayChatSequence() {
+    const heroSection = document.querySelector('.hero-section');
+    if (!heroSection) return;
+    
+    const chatView = heroSection.querySelector('.hero-chat-view');
+    if (!chatView) return;
+    
+    // Reset state
+    heroSection.classList.remove('transitioned');
+    heroSection.dataset.chatAnimated = '';
+    
+    // Reset all messages
+    const messages = chatView.querySelectorAll('.message, .delivered-status, .time-transition');
+    messages.forEach(msg => {
+        msg.classList.remove('visible');
+    });
+    
+    // Reset typing indicator
+    const typingIndicator = chatView.querySelector('.typing-indicator');
+    if (typingIndicator) {
+        typingIndicator.style.display = '';
+        typingIndicator.classList.remove('visible');
+    }
+    
+    // Reset time
+    const chatTime = chatView.querySelector('.chat-time');
+    if (chatTime) {
+        chatTime.textContent = '2:08 AM';
+    }
+    
+    // Reset fade overlay
+    const fadeOverlay = chatView.querySelector('.chat-fade-overlay');
+    if (fadeOverlay) {
+        fadeOverlay.classList.remove('active');
+    }
+    
+    // Scroll to top of hero section
+    heroSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    
+    // Restart chat sequence after a brief delay
+    setTimeout(() => {
+        triggerChatSequence();
+    }, 500);
+}
+
 // Typing indicator helpers
 function showTypingIndicator(typingIndicator) {
     if (!typingIndicator) return;
@@ -1291,6 +1337,14 @@ document.addEventListener('DOMContentLoaded', function() {
     }
     
     window.addEventListener('scroll', handleScroll, { passive: true });
+    
+    // Replay button functionality
+    const replayBtn = document.querySelector('.chat-replay-btn');
+    if (replayBtn) {
+        replayBtn.addEventListener('click', () => {
+            replayChatSequence();
+        });
+    }
     
     // Initialize parallax elements
     parallaxElements = Array.from(document.querySelectorAll('.parallax'));
