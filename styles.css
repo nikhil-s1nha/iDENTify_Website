@@ -83,7 +83,7 @@ body {
     width: 100%;
     background: rgb(219, 241, 225);
     z-index: 1000;
-    padding: 1rem 0;
+    padding: 0.75rem 0;
     border-bottom: 1px solid var(--mint-200);
     transition: background-color 0.2s ease;
 }
@@ -298,7 +298,8 @@ body {
     position: relative;
     overflow: hidden;
     background: linear-gradient(180deg, #0A0A0A 0%, #1A1A1A 100%);
-    padding-top: var(--navbar-height);
+    padding-top: 0;
+    margin-top: 0;
 }
 
 .hero-section::before {
@@ -352,7 +353,7 @@ body {
     transform: translateY(40px);
     z-index: 1;
     background: linear-gradient(135deg, #F2FFF2 0%, #E5F8E8 100%);
-    padding: 80px 20px;
+    padding: 250px 20px;
 }
 
 .hero-section.transitioned .hero-content-view {
@@ -623,7 +624,7 @@ body {
 
 .chat-header {
     position: absolute;
-    top: 0;
+    top: var(--navbar-height);
     left: 0;
     right: 0;
     display: flex;
@@ -652,7 +653,7 @@ body {
 .chat-messages {
     flex: 1;
     overflow-y: auto;
-    padding: 80px 20px 20px;
+    padding: calc(var(--navbar-height) + 60px) 20px 20px;
     display: flex;
     flex-direction: column;
     gap: 12px;
@@ -788,7 +789,7 @@ body {
 /* Legacy classes kept for compatibility - now handled by hero-section */
 
 .hero-reveal-container {
-    max-width: 900px;
+    max-width: 800px;
     text-align: left;
     padding: 0;
     width: 100%;
