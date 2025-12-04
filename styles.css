@@ -371,6 +371,7 @@ body {
     gap: 4rem;
     align-items: center;
     padding: 0 2rem;
+    justify-items: start;
 }
 
 @media (max-width: 1024px) {
@@ -789,10 +790,11 @@ body {
 /* Legacy classes kept for compatibility - now handled by hero-section */
 
 .hero-reveal-container {
-    max-width: 800px;
+    max-width: 700px;
     text-align: left;
     padding: 0;
     width: 100%;
+    margin-left: 0;
 }
 
 @media (max-width: 1024px) {
@@ -855,13 +857,21 @@ body {
     transform: translateY(0);
 }
 
-.hero-reveal-cta {
+.hero-reveal-cta-buttons {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
     opacity: 0;
     transform: translateY(20px);
     transition: opacity 0.8s ease 1.4s, transform 0.8s ease 1.4s;
 }
 
-.hero-section.transitioned .hero-reveal-cta {
+.hero-section.transitioned .hero-reveal-cta-buttons {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.hero-reveal-cta {
     opacity: 1;
     transform: translateY(0);
 }
@@ -1288,9 +1298,145 @@ body {
     line-height: 1.2;
 }
 
-/* Problem Section */
+/* Problem Section - Manifesto Style */
 .problem-section {
-    background: linear-gradient(180deg, var(--gradient-bg-start), var(--gradient-bg-end));
+    background: var(--gradient-bg-start);
+    color: var(--navy-800);
+    padding: 0 0 6rem 0;
+}
+
+.problem-manifesto-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 2rem;
+}
+
+.problem-manifesto-goal {
+    text-align: center;
+    margin-bottom: 4rem;
+    padding-top: 0;
+}
+
+.manifesto-title {
+    font-size: 4rem;
+    font-weight: 700;
+    color: var(--navy-900);
+    margin-bottom: 0.5rem;
+    letter-spacing: -0.02em;
+}
+
+.manifesto-author {
+    font-size: 1rem;
+    font-style: italic;
+    color: var(--navy-600);
+    margin-bottom: 2rem;
+}
+
+.manifesto-goal-text {
+    font-size: 1.5rem;
+    line-height: 1.6;
+    color: var(--navy-800);
+    max-width: 800px;
+    margin: 0 auto 2rem;
+}
+
+.manifesto-common-text {
+    font-size: 1rem;
+    line-height: 1.8;
+    color: var(--navy-700);
+    max-width: 900px;
+    margin: 0 auto 1.5rem;
+    text-align: center;
+}
+
+.problem-manifesto-columns {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem;
+    margin-bottom: 4rem;
+}
+
+.manifesto-column {
+    font-size: 1rem;
+    line-height: 1.8;
+    color: var(--navy-700);
+}
+
+.manifesto-column-title {
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: var(--navy-900);
+    margin-bottom: 1.5rem;
+    border-bottom: 2px solid rgba(32, 178, 170, 0.2);
+    padding-bottom: 0.5rem;
+}
+
+.manifesto-column p {
+    margin-bottom: 1.5rem;
+    color: var(--navy-700);
+}
+
+.manifesto-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.manifesto-list li {
+    margin-bottom: 1.5rem;
+    padding-left: 1.5rem;
+    position: relative;
+    color: var(--navy-700);
+}
+
+.manifesto-list li::before {
+    content: "•";
+    position: absolute;
+    left: 0;
+    color: var(--mint-600);
+    font-size: 1.2rem;
+}
+
+.manifesto-list li strong {
+    color: var(--navy-900);
+    font-weight: 600;
+}
+
+.manifesto-highlight {
+    color: #20B2AA;
+    font-weight: 600;
+}
+
+.problem-manifesto-footer {
+    text-align: center;
+    margin-top: 4rem;
+    padding-top: 3rem;
+    border-top: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.problem-manifesto-footer p {
+    font-size: 1.1rem;
+    line-height: 1.8;
+    color: var(--navy-700);
+    margin-bottom: 1.5rem;
+    max-width: 900px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+@media (max-width: 1024px) {
+    .problem-manifesto-columns {
+        grid-template-columns: 1fr;
+        gap: 3rem;
+    }
+    
+    .manifesto-title {
+        font-size: 3rem;
+    }
+    
+    .manifesto-goal-text {
+        font-size: 1.3rem;
+    }
 }
 
 .story-beats {
@@ -3936,6 +4082,16 @@ body {
     
     .hero-reveal-body {
         font-size: 1rem;
+    }
+    
+    .hero-reveal-cta-buttons {
+        flex-direction: column;
+        gap: 0.75rem;
+    }
+    
+    .hero-reveal-cta-buttons .btn {
+        width: 100%;
+        justify-content: center;
     }
     
     /* LEGACY CODE: Legacy hero section has been replaced by chat-hero */
