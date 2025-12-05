@@ -1691,6 +1691,7 @@ body {
 /* Solution Section */
 .solution-section {
     background: linear-gradient(180deg, var(--gradient-bg-end), var(--gradient-bg-start));
+    padding: 3rem 0;
 }
 
 .dark-to-light-transition {
