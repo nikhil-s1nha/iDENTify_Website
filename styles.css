@@ -540,6 +540,15 @@ body {
 }
 
 /* Replay Button - Less Prominent */
+.chat-snapshot-note {
+    font-size: 0.75rem;
+    color: var(--navy-600);
+    font-style: italic;
+    text-align: center;
+    margin: 0;
+    opacity: 0.7;
+}
+
 .chat-replay-btn {
     display: inline-flex;
     align-items: center;
@@ -1427,9 +1436,17 @@ section#solution.solution-section {
     font-weight: 600;
 }
 
-.manifesto-highlight {
+.manifesto-highlight,
+a.manifesto-highlight {
     color: #20B2AA;
     font-weight: 600;
+    text-decoration: underline;
+}
+
+a.manifesto-highlight:hover {
+    text-decoration: underline;
+    color: #20B2AA;
+    opacity: 0.8;
 }
 
 .problem-manifesto-footer {
