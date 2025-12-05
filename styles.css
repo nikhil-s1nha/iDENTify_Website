@@ -3213,7 +3213,11 @@ a.manifesto-highlight:hover {
 
 /* Team Section Styles */
 #team {
-    padding: 80px 0;
+    padding: 140px 0 140px 0;
+}
+
+#contact {
+    padding-top: 50px;
 }
 
 .team-intro {
@@ -3226,9 +3230,12 @@ a.manifesto-highlight:hover {
 /* Team Grid */
 .team-grid {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(2, 1fr);
     gap: 2rem;
     margin-top: 2rem;
+    max-width: 800px;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 /* Team Card */
