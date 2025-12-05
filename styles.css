@@ -1411,6 +1411,7 @@ body {
     text-align: center;
     margin-top: 2rem;
     padding-top: 2rem;
+    padding-bottom: 0;
     border-top: 1px solid rgba(0, 0, 0, 0.1);
 }
 
@@ -1418,10 +1419,32 @@ body {
     font-size: 1rem;
     line-height: 1.6;
     color: var(--navy-700);
-    margin-bottom: 1rem;
+    margin-bottom: 0;
     max-width: 900px;
     margin-left: auto;
     margin-right: auto;
+}
+
+/* Arrow pointing from problem to solution */
+.problem-to-solution-arrow {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0;
+    background: var(--gradient-bg-start);
+}
+
+.problem-to-solution-arrow svg {
+    animation: bounce-arrow 2s ease-in-out infinite;
+}
+
+@keyframes bounce-arrow {
+    0%, 100% {
+        transform: translateY(0);
+    }
+    50% {
+        transform: translateY(10px);
+    }
 }
 
 @media (max-width: 1024px) {
