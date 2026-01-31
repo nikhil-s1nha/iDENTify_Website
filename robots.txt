@@ -1,0 +1,7 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://identify.dev/sitemap.xml
+
+# Optional: block maintenance from indexing (uncomment if needed)
+# Disallow: /maintenance.html

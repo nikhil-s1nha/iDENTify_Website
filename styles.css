@@ -3119,6 +3119,20 @@ a.manifesto-highlight:hover {
     color: #ffffff;
 }
 
+.footer-founder {
+    margin-top: 0.75rem;
+    font-size: 0.85rem;
+    color: var(--navy-600);
+    opacity: 0.9;
+}
+.footer-founder a {
+    color: var(--mint-200);
+    text-decoration: none;
+}
+.footer-founder a:hover {
+    color: #ffffff;
+}
+
 .footer-separator {
     color: var(--navy-600);
     margin: 0 0.25rem;
