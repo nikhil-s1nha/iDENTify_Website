@@ -3219,7 +3219,7 @@ a.manifesto-highlight:hover {
 
 /* Team Section Styles */
 #team {
-    padding: 140px 0 140px 0;
+    padding: 100px 0 140px 0;
 }
 
 #contact {
@@ -3310,6 +3310,37 @@ a.manifesto-highlight:hover {
     line-height: 1.6;
     color: var(--navy-600);
     margin-top: 0.5rem;
+}
+
+/* Team social/contact links */
+.team-links {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    margin-top: 1.25rem;
+}
+
+.team-link {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background: var(--mint-200);
+    color: var(--navy-700);
+    text-decoration: none;
+    transition: background 0.2s ease, color 0.2s ease, transform 0.2s ease;
+}
+
+.team-link:hover {
+    background: var(--solution-green);
+    color: #ffffff;
+    transform: translateY(-2px);
+}
+
+.team-link i {
+    font-size: 1.1rem;
 }
 
 /* Active Navigation State */
@@ -4619,7 +4650,7 @@ a.manifesto-highlight:hover {
     
     /* Team Section Mobile Styles */
     #team {
-        padding: 60px 0;
+        padding: 2rem 0 60px 0;
     }
     
     .team-grid {
