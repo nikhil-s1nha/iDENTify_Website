@@ -109,6 +109,12 @@ body {
     display: flex;
     align-items: center;
     gap: 12px;
+    text-decoration: none;
+    color: inherit;
+}
+
+a.nav-logo:hover {
+    opacity: 0.85;
 }
 
 .logo-image {
