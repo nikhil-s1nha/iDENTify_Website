@@ -29,8 +29,8 @@ const server = http.createServer((req, res) => {
   }
 
   // Map extension-less routes to their .html files
-  if (pathname === '/team') {
-    pathname = '/team.html';
+  if (pathname === '/nikhil-sinha') {
+    pathname = '/nikhil-sinha.html';
   } else if (pathname === '/contact') {
     pathname = '/contact.html';
   }
@@ -60,6 +60,6 @@ const server = http.createServer((req, res) => {
 server.listen(PORT, () => {
   console.log(`\n🚀 Server running at http://localhost:${PORT}`);
   console.log(`✅ Site is LIVE`);
-  console.log(`   Serving index.html, team.html, and all assets\n`);
+  console.log(`   Serving index.html, nikhil-sinha.html, and all assets\n`);
 });
 
